@@ -162,12 +162,17 @@ footer{background:var(--escuro);color:var(--creme);padding:36px 0 calc(36px + en
 footer .wrap{display:flex;flex-wrap:wrap;gap:16px 32px;align-items:center;justify-content:space-between;font-size:14px}
 footer img{height:24px;width:auto}
 /* botão flutuante subir/descer */
-.setas{position:fixed;right:max(16px,env(safe-area-inset-right));bottom:calc(16px + env(safe-area-inset-bottom));z-index:40;display:flex;flex-direction:column;border-radius:999px;background:var(--escuro);box-shadow:0 10px 26px -10px rgba(39,20,22,.6);overflow:hidden;opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .2s,transform .2s}
+.setas{position:fixed;right:max(16px,env(safe-area-inset-right));bottom:calc(16px + env(safe-area-inset-bottom));z-index:40;display:flex;flex-direction:column;border-radius:999px;background:var(--escuro);box-shadow:0 10px 26px -10px rgba(39,20,22,.6);opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .2s,transform .2s}
 .setas.on{opacity:1;transform:none;pointer-events:auto}
 .setas a{width:48px;height:46px;display:grid;place-items:center;color:var(--creme);text-decoration:none}
 .setas a+a{border-top:1px solid rgba(249,242,222,.18)}
 .setas a:hover{background:var(--vinho)}
 .setas svg{width:20px;height:20px}
+.setas a{position:relative}
+.setas a:first-child{border-radius:999px 999px 0 0}
+.setas a:last-child{border-radius:0 0 999px 999px}
+.setas .home{position:absolute;right:calc(100% + 8px);top:50%;transform:translateY(-50%);background:var(--escuro);color:var(--creme);font:600 13px/1 'Syne',sans-serif;letter-spacing:.04em;padding:9px 13px;border-radius:999px;box-shadow:0 10px 26px -10px rgba(39,20,22,.6);white-space:nowrap}
+.setas a:first-child:hover .home{background:var(--vinho)}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn,.setas{transition:none}}
 </style>
 </head>
@@ -301,7 +306,7 @@ footer img{height:24px;width:auto}
 </footer>
 
 <nav class="setas" aria-label="Navegar pela página">
-  <a href="#inicio" aria-label="Voltar ao início"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15l6-6 6 6"/></svg></a>
+  <a href="#inicio" aria-label="Voltar ao início"><span class="home" aria-hidden="true">home</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15l6-6 6 6"/></svg></a>
   <a href="#contato" aria-label="Ir para o fim"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
 </nav>
 <script>
