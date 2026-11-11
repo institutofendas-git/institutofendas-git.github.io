@@ -227,8 +227,9 @@ footer a:hover{opacity:1;text-decoration:underline}
 .setas a{position:relative}
 .setas a:first-child{border-radius:999px 999px 0 0}
 .setas a:last-child{border-radius:0 0 999px 999px}
-.setas .home{position:absolute;right:calc(100% + 8px);top:50%;transform:translateY(-50%);background:var(--escuro);color:var(--creme);font:600 13px/1 'Syne',sans-serif;letter-spacing:.04em;padding:9px 13px;border-radius:999px;box-shadow:0 10px 26px -10px rgba(39,20,22,.6);white-space:nowrap}
-.setas a:first-child:hover .home{background:var(--vinho)}
+.setas .topo-btn{height:58px;flex-direction:column;gap:3px;display:flex;align-items:center;justify-content:center}
+.setas .topo-btn svg{width:19px;height:19px}
+.setas .home{font:600 9px/1 'Syne',sans-serif;letter-spacing:.08em;text-transform:lowercase}
 @media(max-width:899px){footer{padding-bottom:calc(100px + env(safe-area-inset-bottom))}}
 body.com-barra .setas{bottom:calc(86px + env(safe-area-inset-bottom))}
 @media(min-width:900px){body.com-barra .setas{bottom:calc(16px + env(safe-area-inset-bottom))}}
@@ -465,7 +466,7 @@ body.com-barra .setas{bottom:calc(86px + env(safe-area-inset-bottom))}
 </footer>
 
 <nav class="setas" aria-label="Navegar pela página">
-  <a href="#topo" aria-label="Voltar ao início"><span class="home" aria-hidden="true">home</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15l6-6 6 6"/></svg></a>
+  <a href="#topo" aria-label="Voltar ao início" class="topo-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11l8-7 8 7"/><path d="M6 9.5V20h12V9.5"/><path d="M10 20v-5h4v5"/></svg><span class="home" aria-hidden="true">home</span></a>
   <a href="#fim" aria-label="Ir para o fim"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
 </nav>
 <div class="barra" aria-hidden="true"><small>5 combos · a partir de <b>R$&nbsp;82,35</b></small><a class="btn btn-vermelho" href="#combos" tabindex="-1">Ver combos</a></div>
