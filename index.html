@@ -107,6 +107,7 @@ p{margin:0}
 .formatos{background:var(--verde);color:var(--creme);position:relative;overflow:hidden}
 .formatos::before{content:"";position:absolute;left:-18%;top:-2vw;width:max(190vw,1900px);aspect-ratio:1770/198;background:var(--px-verde) center/contain no-repeat;pointer-events:none}
 .formatos .wrap{position:relative}
+@media(max-width:899px){.formatos::before{left:-760px}}
 .formatos .cab{padding-top:max(220px,calc(21.3vw + 8px))}
 .formatos .cab h2{color:#fff}.formatos .cab p{color:#E6DCC6}
 .lista-formatos{display:grid;gap:0;border-top:1.5px solid rgba(249,242,222,.35)}
