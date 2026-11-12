@@ -1,6 +1,7 @@
 """Gera home4-src.html a partir de home3-src.html: eventos em ordem cronológica com filtro, fotos como <img>, blocos pós-campanha."""
 import re, json
 from curso import card, CARDS_CSS, ORDEM, CURSOS
+import aberto
 from dados import FORMATOS
 s = open('home3-src.html').read()
 def rep(a, b, n=1):
@@ -41,4 +42,13 @@ rep('<section class="sec" id="o-que-fazemos">', '''<section class="sec aberto po
 rep('</script>\n</body>', '''(function(){var cs=document.querySelectorAll('.chip'),ls=document.querySelectorAll('#lista-eventos>li');cs.forEach(function(c){c.addEventListener('click',function(){cs.forEach(function(x){var on=x===c;x.classList.toggle('on',on);x.setAttribute('aria-pressed',on)});ls.forEach(function(l){l.hidden=!!c.dataset.f&&l.dataset.formato!==c.dataset.f})})})})();
 </script>
 </body>''')
+
+ab = aberto.abertos()
+if ab:  # eventos com inscrição aberta: o bloco se monta a partir dos dados
+    a = s.index('<article class="card-aberto">'); b = s.index('</article>', a) + len('</article>')
+    s = s[:a] + aberto.bloco(ab) + s[b:]
+    s = s.replace('<section class="sec aberto so-campanha" id="aberto">', '<section class="sec aberto" id="aberto">')
+    s = s.replace('<div class="acoes so-campanha"><a class="btn btn-vermelho" href="#aberto">', '<div class="acoes"><a class="btn btn-vermelho" href="#aberto">')
+    s = s.replace('</style>', aberto.CSS + '</style>', 1)
+    s = s.replace('</body>', aberto.JS + '\n</body>', 1)
 open('home4-src.html', 'w').write(s)

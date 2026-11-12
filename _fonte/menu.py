@@ -2,6 +2,9 @@
 ativo: 'inicio' | 'final' | 'f:<slug-do-formato>' (página de formato ou de curso daquele formato)."""
 import re, rastreio
 
+ABERTO_HREF = '/#aberto'  # com eventos abertos: o evento (se um só) ou '/#aberto'
+ABERTO_CLASSE = 'so-campanha'
+
 FORMATOS = [('clubes-do-livro', 'Clubes do livro'), ('minicursos', 'Minicursos'), ('capacitacoes', 'Capacitações'),
             ('grupos-de-estudos', 'Grupos de estudos'), ('cursos', 'Cursos')]
 CARET = '<svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>'
@@ -84,7 +87,7 @@ def header(ativo):
     if ativo == 'final':
         botao = '<a class="mbtn" href="#combos">Ver combos</a>'
     else:
-        botao = '<a class="mbtn so-campanha" href="/final-de-ano/">Aberto agora</a>'
+        botao = f'<a class="mbtn {ABERTO_CLASSE} aberto-agora" href="{ABERTO_HREF}">Aberto agora</a>'
     return f"""<header class="topo">
   <div class="wrap mwrap">
     <a class="logo" href="/"><img src="{{{{of/wm-branco-verm.svg}}}}" alt="Instituto Fendas" width="1830" height="331"></a>
@@ -161,18 +164,7 @@ GERAL_CSS = r"""
 .pular:focus{top:12px}
 :focus-visible{outline:3px solid var(--vermelho);outline-offset:3px}
 .topo :focus-visible,.hero :focus-visible,.fecho :focus-visible,footer :focus-visible{outline-color:var(--creme)}
-@view-transition{navigation:auto}
-.rv{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
-html.js img[loading=lazy]{opacity:0;transition:opacity .5s}html.js img[loading=lazy].ok{opacity:1}
-.rv.in{opacity:1;transform:none}
+
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}@view-transition{navigation:none}}
 """
-GERAL_JS = r"""<script>
-(function(){
-  document.documentElement.classList.add('js');document.querySelectorAll('img[loading=lazy]').forEach(function(i){if(i.complete)i.classList.add('ok');else{i.addEventListener('load',function(){i.classList.add('ok')});i.addEventListener('error',function(){i.classList.add('ok')})}});
-  if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion:reduce)').matches)return;
-  var els=document.querySelectorAll('.sec .cab,.fcard,.cards>li,.chips,.tile,.pessoa,.encontros>li,.cert,.card-aberto,.combo,.nome-fenda,.pergs li,.linha-tempo>li,.ensaio,#o-que-fazemos article,.qs-foto,.chamada,.dobra,.faq details,.passos>li');
-  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px'});
-  els.forEach(function(el,i){if(el.getBoundingClientRect().top<innerHeight*.92)return;el.classList.add('rv');var p=el.previousElementSibling;if(p&&p.classList.contains('rv'))el.style.transitionDelay=(Math.min(i%4,3)*70)+'ms';io.observe(el)});
-})();
-</script>"""
+GERAL_JS = ""  # animações de entrada desligadas em 11/11/2026 (travavam na página inicial)
