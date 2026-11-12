@@ -122,6 +122,8 @@ def aplicar(html):
     html = re.sub(r"@font-face\{font-family:'Syne'[^\n]*\n", '', html)
     html = re.sub(r'<body>', '<body>\n<a class="pular" href="#inicio">Pular para o conteúdo</a>', html, count=1)
     html = html.replace('</body>', JS + GERAL_JS + '\n</body>', 1)
+    html = re.sub(r'<span>Instituto Fendas(?: © \d{4})? · CNPJ', '<span>© <span class="ano">2026</span> Instituto Fendas · CNPJ', html)
+    html = html.replace('</body>', "<script>(function(){var a=Math.max(2026,new Date().getFullYear());document.querySelectorAll('.ano').forEach(function(e){e.textContent=a})})();</script>\n</body>", 1)
     return rastreio.aplicar(html)
 
 
