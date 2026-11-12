@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /_fonte/
+Sitemap: https://institutofendas.com.br/sitemap.xml
