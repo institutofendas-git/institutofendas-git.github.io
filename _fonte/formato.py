@@ -32,8 +32,8 @@ def gerar(fslug, nome, plural, desc, longo, fatos):
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>{esc(plural)} | Instituto Fendas</title>
-{og(plural + " | Instituto Fendas", desc, f"/formatos/{fslug}/", plural + " do Instituto Fendas")}
+<title>{esc(plural)} online em saúde e interseccionalidade, com certificado | Instituto Fendas</title>
+{og(plural + " | Instituto Fendas", desc + " Online, ao vivo e gravados, com certificado.", f"/formatos/{fslug}/", plural + " do Instituto Fendas")}
 <link rel="icon" href="{{{{of/avatar64.png}}}}">
 <style>
 @font-face{{font-family:'Syne';font-weight:400;font-display:swap;src:url({{{{syne-latin-400-normal.woff2}}}}) format('woff2')}}

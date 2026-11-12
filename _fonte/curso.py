@@ -376,8 +376,8 @@ def gerar(slug):
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>{esc(c["formato"])} {esc(titulo)} | Instituto Fendas</title>
-{og(titulo + " | Instituto Fendas", c["chamada"], f"/eventos/{slug}/", c["formato"] + " " + nome)}
+<title>{esc(nome)}: {esc(c["formato"].lower())} online com certificado | Instituto Fendas</title>
+{og(titulo + " | Instituto Fendas", c["chamada"] + f" {c['formato']} online, ao vivo e gravado, com certificado de {c['horas'][0]}h.", f"/eventos/{slug}/", c["formato"] + " " + nome)}
 <link rel="icon" href="{{{{of/avatar64.png}}}}">
 <style>
 @font-face{{font-family:'Syne';font-weight:400;font-display:swap;src:url({{{{syne-latin-400-normal.woff2}}}}) format('woff2')}}
