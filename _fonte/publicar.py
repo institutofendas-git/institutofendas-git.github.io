@@ -7,6 +7,7 @@ shutil.rmtree(R, ignore_errors=True); os.makedirs(R)
 pares = [('home4-src.html', 'index.html'), ('src.html', 'final-de-ano/index.html')]
 pares += [(f, 'eventos/%s/index.html' % f[6:-9]) for f in sorted(glob.glob('curso-*-src.html'))]
 pares += [(f, 'formatos/%s/index.html' % f[8:-9]) for f in sorted(glob.glob('formato-*-src.html'))]
+pares += [(f, 'temas/%s/index.html' % f[5:-9]) for f in sorted(glob.glob('tema-*-src.html'))]
 if rastreio.ATIVO: pares.append(('privacidade-src.html', 'privacidade/index.html'))
 urls = []
 for src, out in pares:
@@ -15,8 +16,8 @@ for src, out in pares:
     os.makedirs(os.path.dirname(f'{R}/{out}') or R, exist_ok=True)
     open(f'{R}/{out}', 'w').write(h)
     urls.append('/' + out.replace('index.html', ''))
-    if out.startswith(('eventos/', 'formatos/')):
-        p = 'previas/' + ('curso-' if out.startswith('eventos/') else 'formato-') + out.split('/')[1] + '.jpg'
+    if out.startswith(('eventos/', 'formatos/', 'temas/')):
+        p = 'previas/' + {'eventos/': 'curso-', 'formatos/': 'formato-', 'temas/': 'tema-'}[out[:out.index('/') + 1]] + out.split('/')[1] + '.jpg'
         shutil.copy(p, f'{R}/{os.path.dirname(out)}/preview.jpg')
     if out.startswith('eventos/'):  # endereço antigo continua funcionando
         sl = out.split('/')[1]; os.makedirs(f'{R}/cursos/{sl}')

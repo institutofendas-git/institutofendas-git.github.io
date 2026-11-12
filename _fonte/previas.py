@@ -1,7 +1,7 @@
 """Gera as imagens de prévia (1200x630) das páginas de curso e de formato em ./previas/"""
 import asyncio, os, html
 from playwright.async_api import async_playwright
-import curso, formato
+import curso, formato, tema
 from curso import CURSOS
 from dados import FORMATOS
 B = 'file:///home/claude/fendas/'
@@ -28,6 +28,7 @@ async def main():
         b = await p.chromium.launch(); pg = await b.new_page(viewport={'width': 1200, 'height': 630})
         jobs = [(f'curso-{s}', pag(c['formato'] + ' · encerrado', c['nome'], c['sub'], img=c['img'])) for s, c in CURSOS.items()]
         jobs += [(f'formato-{f[0]}', pag('Formato', f[2], f[3], ic=formato.MARCA_F[f[0]][0], giro=formato.MARCA_F[f[0]][1])) for f in FORMATOS]
+        jobs += [(f"tema-{t['slug']}", pag('Tema', t['nome'], t['chamada'], ic=t['marca'][0], giro=t['marca'][1])) for t in tema.TEMAS]
         for nome, h in jobs:
             open('/tmp/_p.html', 'w').write(h); await pg.goto('file:///tmp/_p.html'); await pg.wait_for_timeout(250)
             await pg.screenshot(path=f'previas/{nome}.jpg', type='jpeg', quality=86)

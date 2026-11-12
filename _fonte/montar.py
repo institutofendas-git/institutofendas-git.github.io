@@ -10,6 +10,7 @@ curso.gerar('exemplo-inscricoes-abertas'); del curso.CURSOS['exemplo-inscricoes-
 pares = [('home4-src.html', 'index.html'), ('src.html', 'final-de-ano.html')]
 pares += [(f, 'evento-' + f[6:].replace('-src', '')) for f in sorted(glob.glob('curso-*-src.html'))]
 pares += [(f, f.replace('-src', '')) for f in sorted(glob.glob('formato-*-src.html'))]
+pares += [(f, f.replace('-src', '')) for f in sorted(glob.glob('tema-*-src.html'))]
 TOPO = "<script>(function(){function t(){try{if(!location.hash){window.scrollTo(0,0);document.documentElement.scrollIntoView({block:'start'})}}catch(e){}}try{if('scrollRestoration' in history)history.scrollRestoration='manual'}catch(e){}t();window.addEventListener('load',t);window.addEventListener('pageshow',t)})();</script>"
 def rel(h):
     h = re.sub(r'href="/"', 'href="index.html"', h)
@@ -17,6 +18,7 @@ def rel(h):
     h = re.sub(r'href="/final-de-ano/(#[^"]*)?"', lambda m: f'href="final-de-ano.html{m.group(1) or ""}"', h)
     h = re.sub(r'href="/formatos/([a-z-]+)/"', r'href="formato-\1.html"', h)
     h = re.sub(r'href="/eventos/([a-z-]+)/"', r'href="evento-\1.html"', h)
+    h = re.sub(r'href="/temas/([a-z-]+)/"', r'href="tema-\1.html"', h)
     return h.replace('</body>', TOPO + '\n</body>', 1)
 for src, out in pares:
     h = menu.sem_depoimentos(menu.aplicar(open(src).read()))
