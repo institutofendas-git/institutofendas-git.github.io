@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Privacidade e cookies | Instituto Fendas</title>
+<link rel="canonical" href="https://institutofendas.com.br/privacidade/">
+<link rel="icon" href="{{of/avatar64.png}}">
+<style>
+
+@font-face{font-family:'Syne';font-weight:400;font-display:swap;src:url({{syne-latin-400-normal.woff2}}) format('woff2')}
+@font-face{font-family:'Syne';font-weight:600;font-display:swap;src:url({{syne-latin-600-normal.woff2}}) format('woff2')}
+@font-face{font-family:'Syne';font-weight:700;font-display:swap;src:url({{syne-latin-700-normal.woff2}}) format('woff2')}
+:root{
+  --vermelho:#D62929;--vinho:#750A21;--verde:#6B6555;--bege:#C2B299;--creme:#F9F2DE;--escuro:#271416;
+  --papel:#FDF9EF;--linha:#E6DAC2;--texto:#3B2A26;--fresta:#8E1834;
+  --rachadura-1:url({{of/bg1.svg}});--rachadura-3:url({{of/bg3.svg}});--px-verde:url({{px-verde.svg}});--px-creme:url({{px-creme.svg}});
+  --pad:clamp(20px,5vw,72px);--max:1180px;color-scheme:light
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--creme);color:var(--escuro);font-family:'Syne',system-ui,sans-serif;font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+b,strong{font-weight:600}
+a{color:inherit}
+img{display:block;max-width:100%}
+.wrap{max-width:var(--max);margin:0 auto;padding-left:max(var(--pad),env(safe-area-inset-left));padding-right:max(var(--pad),env(safe-area-inset-right))}
+h1,h2,h3{font-weight:600;letter-spacing:-.01em;line-height:1.08;margin:0;text-wrap:balance}
+p{margin:0}
+.eyebrow{font-size:13px;letter-spacing:.12em;text-transform:uppercase}
+.sec{padding:clamp(64px,9vw,112px) 0;scroll-margin-top:64px}
+.cab{display:flex;flex-direction:column;gap:12px;margin-bottom:clamp(32px,5vw,52px);max-width:720px}
+.cab h2{font-size:clamp(34px,5vw,56px);color:var(--vinho)}
+.cab p{font-size:18px;color:var(--verde);max-width:40ch;text-wrap:pretty}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font:600 16px/1 'Syne',sans-serif;text-decoration:none;border-radius:999px;padding:17px 28px;min-height:52px;transition:transform .15s,background .15s,color .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn-vermelho{background:var(--vermelho);color:#fff}.btn-vermelho:hover{background:#B91F1F}
+.btn-creme{background:var(--creme);color:var(--vinho)}
+.btn-zap{background:transparent;color:inherit;border:1.5px solid currentColor}
+.btn-zap svg{width:18px;height:18px;flex:none}
+.btn-linha{border:1.5px solid currentColor;color:var(--creme);padding:10px 18px;min-height:0;font-size:14px}
+.btn-linha:hover{background:var(--creme);color:var(--vinho)}
+.btn:focus-visible,a:focus-visible{outline:3px solid var(--vermelho);outline-offset:3px}
+
+/* aviso de rascunho */
+.rascunho{background:#FFF3C4;color:#5B4300;font-size:13px;text-align:center;padding:8px 16px}
+
+/* topo */
+.topo{position:sticky;top:0;z-index:20;background:var(--vinho);color:var(--creme);padding-top:env(safe-area-inset-top)}
+.topo .wrap{display:flex;align-items:center;gap:22px;height:64px}
+.topo .logo img{height:24px;width:auto}
+.topo nav{display:none;gap:22px;margin-left:auto;font-size:14px}
+.topo nav a{text-decoration:none;opacity:.85}.topo nav a:hover{opacity:1}
+.topo .btn{margin-left:auto}
+@media(min-width:860px){.topo nav{display:flex}.topo .btn{margin-left:0}}
+
+
+footer{background:var(--escuro);color:var(--creme);padding:36px 0 calc(36px + env(safe-area-inset-bottom))}
+footer .wrap{display:flex;flex-wrap:wrap;gap:16px 32px;align-items:center;justify-content:space-between;font-size:14px}
+footer img{height:24px;width:auto}
+
+/* botão flutuante subir/descer */
+.setas{position:fixed;right:max(16px,env(safe-area-inset-right));bottom:calc(16px + env(safe-area-inset-bottom));z-index:40;display:flex;flex-direction:column;border-radius:999px;background:var(--escuro);box-shadow:0 10px 26px -10px rgba(39,20,22,.6);opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .2s,transform .2s}
+.setas.on{opacity:1;transform:none;pointer-events:auto}
+.setas a{width:48px;height:46px;display:grid;place-items:center;color:var(--creme);text-decoration:none}
+.setas a+a{border-top:1px solid rgba(249,242,222,.18)}
+.setas a:hover{background:var(--vinho)}
+.setas svg{width:20px;height:20px}
+.setas a{position:relative}
+.setas a:first-child{border-radius:999px 999px 0 0}
+.setas a:last-child{border-radius:0 0 999px 999px}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn,.setas{transition:none}}
+
+
+/* ---------- página de curso ---------- */
+body{font-size:16px}
+.sec{padding:clamp(52px,8vw,96px) 0}
+.cab{margin-bottom:clamp(22px,4vw,40px)}
+.cab h2{font-size:clamp(28px,4.4vw,48px)}
+.trilha{background:var(--vinho);color:var(--bege);border-top:1px solid rgba(249,242,222,.12)}
+.trilha .wrap{padding-top:9px;padding-bottom:9px;display:flex;flex-wrap:wrap;align-items:baseline;column-gap:8px;row-gap:2px;font-size:12.5px;line-height:1.4}
+.trilha a{color:var(--creme);text-decoration:none;opacity:.8}.trilha a:hover{opacity:1;text-decoration:underline}
+.trilha span{opacity:.6}
+.trilha b{font-weight:600;color:var(--creme)}
+/* abertura */
+.hero{color:var(--creme);background:var(--fresta);position:relative;overflow:hidden}
+.hero>.wrap,.hero>.resumo{position:relative;z-index:1}
+.hero .marca{position:absolute;z-index:0;pointer-events:none;right:-22vw;top:42%;width:min(115vw,620px);transform:translateY(-50%) rotate(var(--giro,0deg))}
+@media(min-width:900px){.hero .marca{right:auto;left:46%;top:58%;width:620px}}
+.hero>.wrap{padding-top:22px;padding-bottom:clamp(36px,6vw,72px);display:grid;gap:22px}
+.hero-txt{display:flex;flex-direction:column;gap:14px}
+.hero .eyebrow{color:var(--bege)}
+.hero h1{font-size:clamp(34px,6vw,68px);color:#fff}
+.hero h1 span{display:block;font-weight:400;font-size:.5em;line-height:1.25;margin-top:8px;color:#F2E4CB}
+.hero .chamada{font-size:clamp(16px,1.7vw,19px);color:#F2E4CB;max-width:46ch}
+.selo-status{align-self:flex-start;display:inline-flex;gap:8px;align-items:center;background:rgba(249,242,222,.14);border:1px solid rgba(249,242,222,.35);color:var(--creme);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;border-radius:999px;padding:7px 13px}
+.selo-status svg{width:14px;height:14px}
+.capa{aspect-ratio:4/3;border-radius:6px;position:relative;overflow:hidden;background:var(--vinho);box-shadow:0 26px 44px -30px rgba(0,0,0,.7)}
+@media(min-width:900px){.hero>.wrap{grid-template-columns:1.2fr .8fr;align-items:center;column-gap:48px;padding-top:44px}.hero-txt{grid-column:1;grid-row:1}.capa{grid-column:2;grid-row:1;aspect-ratio:1;width:min(100%,440px);justify-self:end}}
+.capa img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.selo-status.aberto{background:var(--creme);color:var(--vinho);border-color:var(--creme)}.selo-status.aberto::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--vermelho)}
+.inscricao .preco{font-size:15px}.inscricao .preco b{display:inline;font-size:22px;color:var(--vinho)}
+.demo{background:#FFF3C4;color:#5B4300;font-size:13.5px;font-weight:600;text-align:center;padding:9px 16px}
+/* resumo */
+.resumo{background:var(--escuro);color:var(--creme)}
+.resumo ul{list-style:none;margin:0 auto;padding-top:22px;padding-bottom:22px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.resumo li{display:flex;gap:10px;align-items:flex-start;background:rgba(249,242,222,.06);border-radius:6px;padding:12px}
+.resumo li:last-child:nth-child(odd){grid-column:1/-1}
+.resumo svg{width:22px;height:22px;flex:none;color:var(--vermelho);margin-top:1px}
+.resumo span{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--bege)}
+.resumo strong{display:block;font-size:14.5px;line-height:1.3;margin-top:3px}
+@media(min-width:900px){.resumo ul{grid-template-columns:repeat(5,1fr);gap:14px;padding-top:26px;padding-bottom:26px}.resumo li:last-child:nth-child(odd){grid-column:auto}}
+/* inscrição */
+.inscricao{background:#F2EAD6}
+.inscricao .wrap{padding-top:22px;padding-bottom:22px;display:flex;flex-direction:column;gap:14px}
+.inscricao .st{display:flex;gap:12px;align-items:flex-start}
+.inscricao .st svg{width:22px;height:22px;flex:none;color:var(--vinho);margin-top:2px}
+.inscricao p{font-size:15px;color:var(--texto)}
+.inscricao p b{display:block;color:var(--vinho);font-size:16px}
+.botoes{display:flex;flex-wrap:wrap;gap:10px}
+.botoes .btn{flex:1 1 220px;text-align:center;line-height:1.25;min-width:0}
+.btn-fechado{background:#D9CDB5;color:#6B6555;cursor:not-allowed;gap:8px}
+.btn-fechado svg{width:16px;height:16px;flex:none}
+.btn-fechado:hover{transform:none}
+@media(min-width:1100px){.inscricao .wrap{flex-direction:row;align-items:center;justify-content:space-between;gap:32px}.inscricao .st{max-width:46ch}.botoes{flex:none;flex-wrap:nowrap}.botoes .btn{flex:none;white-space:nowrap}}
+/* encontros */
+.trilho{background:var(--verde);color:var(--creme)}
+.trilho .cab h2{color:#fff}.trilho .cab p{color:#E6DCC6}
+.encontros{list-style:none;margin:0;padding:0;display:grid;gap:10px;counter-reset:e}
+.encontro{background:rgba(249,242,222,.08);border:1px solid rgba(249,242,222,.22);border-radius:6px}
+.encontro summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:44px 1fr 20px;gap:12px;align-items:center;padding:16px}
+.encontro summary::-webkit-details-marker{display:none}
+.encontro .num{width:44px;height:44px;border-radius:50%;background:var(--creme);color:var(--vinho);display:grid;place-items:center;font-weight:700;font-size:17px}
+.encontro small{display:block;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--bege)}
+.encontro h3{font-size:17px;line-height:1.28;color:#fff;margin-top:3px}
+.encontro .mais{width:20px;height:20px;background:linear-gradient(var(--creme),var(--creme)) center/100% 2px no-repeat,linear-gradient(var(--creme),var(--creme)) center/2px 100% no-repeat;transition:transform .2s}
+.encontro[open] .mais{transform:rotate(45deg)}
+.encontro ul{margin:0;padding:0 18px 18px 72px;display:flex;flex-direction:column;gap:7px;font-size:14.5px;color:#EFE6D2}
+@media(min-width:900px){.encontros{grid-template-columns:repeat(2,1fr);gap:14px}.encontro h3{font-size:19px}.encontro summary{padding:20px}.encontro ul{padding:0 22px 22px 78px}}
+/* em resumo: para quem, como funciona, o que recebe */
+.tres{display:grid;gap:12px}
+.tile{background:var(--papel);border-radius:6px;padding:20px;display:flex;flex-direction:column;gap:10px;border-top:4px solid var(--vermelho)}
+.tile svg{width:28px;height:28px;color:var(--vermelho)}
+.tile h3{font-size:18px;color:var(--vinho)}
+.tile p{font-size:15px;color:var(--texto)}
+.tile ul{margin:0;padding-left:18px;font-size:14.5px;color:var(--texto);display:flex;flex-direction:column;gap:5px}
+@media(min-width:860px){.tres{grid-template-columns:repeat(3,1fr);gap:16px}}
+/* sobre e objetivos */
+.sobre-c{display:grid;gap:22px}
+.sobre-c .intro{font-size:clamp(17px,1.8vw,20px);line-height:1.5;color:var(--escuro);max-width:60ch}
+.aviso{border-left:4px solid var(--vermelho);background:var(--papel);padding:12px 16px;border-radius:0 6px 6px 0;font-size:14.5px;color:var(--escuro)}
+.dobra{border-top:1.5px solid var(--linha)}
+.dobra:last-child{border-bottom:1.5px solid var(--linha)}
+.dobra summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px 0;font-size:17px;font-weight:600;color:var(--vinho)}
+.dobra summary::-webkit-details-marker{display:none}
+.dobra summary::after{content:"";flex:none;width:18px;height:18px;background:linear-gradient(var(--vermelho),var(--vermelho)) center/100% 2px no-repeat,linear-gradient(var(--vermelho),var(--vermelho)) center/2px 100% no-repeat;transition:transform .2s}
+.dobra[open] summary::after{transform:rotate(45deg)}
+.dobra .corpo{padding:0 0 20px;display:flex;flex-direction:column;gap:12px;font-size:15.5px;color:var(--texto);max-width:64ch}
+.dobra ol{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px}
+.dobra .geral{font-weight:600;color:var(--escuro)}
+/* quem conduz */
+.pessoas{display:grid;gap:12px}
+.pessoa{display:grid;grid-template-columns:84px 1fr;gap:14px;background:var(--papel);border-radius:6px;overflow:hidden}
+.pessoa .foto{position:relative;min-height:110px;background:var(--linha)}.pessoa .foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top}
+.pessoa .sem-foto{background:var(--bege);display:grid;place-items:center}.pessoa .sem-foto span{font-size:26px;font-weight:700;color:var(--vinho);opacity:.6}
+.btn-vinho-linha{border:1.5px solid var(--vinho);color:var(--vinho);background:transparent}.fecho .btn-vinho-linha{border-color:var(--creme);color:var(--creme)}
+.pessoa .txt{padding:14px 16px 14px 0;display:flex;flex-direction:column;gap:5px}
+.pessoa h3{font-size:17px;color:var(--vinho)}
+.pessoa p{font-size:13.5px;line-height:1.45;color:var(--texto)}
+.pessoa small{font-size:11.5px;color:var(--verde)}
+@media(min-width:800px){.pessoas{grid-template-columns:repeat(2,1fr);gap:16px}.pessoa{grid-template-columns:120px 1fr}.pessoa h3{font-size:19px}.pessoa p{font-size:14px}}
+/* certificado e prazos */
+.cert{display:grid;gap:22px}
+.carga{background:var(--vinho);color:var(--creme);border-radius:6px;padding:22px;display:flex;flex-direction:column;gap:14px}
+.carga .total{font-size:44px;font-weight:700;line-height:1;color:#fff}
+.carga .total small{font-size:15px;font-weight:600;margin-left:6px;color:var(--bege)}
+.barra-h{display:flex;height:12px;border-radius:999px;overflow:hidden;background:rgba(249,242,222,.2)}
+.barra-h i{display:block;background:var(--vermelho)}
+.legenda{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13.5px}
+.legenda span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;background:rgba(249,242,222,.45);vertical-align:-1px}
+.legenda span:first-child::before{background:var(--vermelho)}
+.passos{list-style:none;margin:0;padding:0;display:grid;gap:10px;counter-reset:p}
+.passos li{counter-increment:p;display:grid;grid-template-columns:40px 1fr;gap:12px;align-items:center;background:var(--papel);border-radius:6px;padding:14px}
+.passos li::before{content:counter(p);width:40px;height:40px;border-radius:50%;background:var(--vermelho);color:#fff;display:grid;place-items:center;font-weight:700}
+.passos b{display:block;font-size:15px;color:var(--vinho)}
+.passos span{font-size:13.5px;color:var(--texto)}
+.prazos{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.prazos li{background:var(--papel);border-radius:6px;padding:12px;border-top:3px solid var(--vermelho)}
+.prazos b{display:block;color:var(--vinho);font-size:14px}
+.prazos span{display:block;font-size:12px;line-height:1.35;color:var(--texto);margin-top:4px}
+.cert h3{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--verde);margin-bottom:10px}
+@media(min-width:900px){.cert{grid-template-columns:.8fr 1.2fr;gap:28px;align-items:start}.passos{grid-template-columns:repeat(3,1fr)}.passos li{grid-template-columns:1fr;align-items:start}}
+/* depoimentos */
+.depo{background:#F2EAD6}
+.depo .topo-dep{display:flex;justify-content:space-between;align-items:flex-end;gap:16px}
+.exemplo{align-self:flex-start;display:inline-block;background:#FFF3C4;color:#5B4300;font-size:12px;font-weight:600;border-radius:999px;padding:5px 11px}
+.setas-car{display:none;gap:8px}
+.setas-car button{width:46px;height:46px;border-radius:50%;border:1.5px solid var(--vinho);background:transparent;color:var(--vinho);display:grid;place-items:center;cursor:pointer}
+.setas-car button:hover{background:var(--vinho);color:var(--creme)}
+.setas-car svg{width:20px;height:20px}
+.depos{display:grid;grid-auto-flow:column;grid-auto-columns:86%;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding-bottom:6px;margin:0 calc(-1*var(--pad));padding-left:var(--pad);padding-right:var(--pad);scroll-padding:0 var(--pad);scrollbar-width:none}
+.depos::-webkit-scrollbar{display:none}
+.depos figure{scroll-snap-align:start;margin:0;background:var(--papel);border-radius:6px;padding:22px;display:flex;flex-direction:column;justify-content:space-between;gap:18px;border-top:4px solid var(--vermelho)}
+.depos blockquote{margin:0;font-size:15px;line-height:1.6;color:var(--texto)}
+.depos blockquote::before{content:"“";display:block;font-size:44px;line-height:.6;color:var(--vermelho);margin-bottom:6px}
+.depos figcaption{display:flex;gap:12px;align-items:center}
+.avatar{width:52px;height:52px;flex:none;border-radius:50%;background:var(--bege) center/cover no-repeat;display:grid;place-items:center;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--escuro)}
+.depos figcaption b{display:block;color:var(--vinho);font-size:15px}
+.depos figcaption span{display:block;font-size:12.5px;line-height:1.35;color:var(--verde);margin-top:2px}
+.pontos{display:flex;justify-content:center;gap:8px;margin-top:16px}
+.pontos i{width:8px;height:8px;border-radius:50%;background:var(--linha);transition:background .2s,width .2s}
+.pontos i.on{background:var(--vermelho);width:22px;border-radius:999px}
+@media(min-width:700px){.depos{grid-auto-columns:calc((100% - 2*var(--pad) - 14px)/2)}}
+@media(min-width:1000px){.depos{grid-auto-columns:calc((100% - 2*var(--pad) - 28px)/3)}.setas-car{display:flex}}
+@media(min-width:1180px){.depos{grid-auto-columns:calc((1180px - 2*var(--pad) - 28px)/3);margin:0 calc((1180px - 100vw)/2 - var(--pad));padding-left:calc((100vw - 1180px)/2 + var(--pad));padding-right:calc((100vw - 1180px)/2 + var(--pad));scroll-padding:0 calc((100vw - 1180px)/2 + var(--pad))}}
+/* faq */
+.faq details{border-top:1.5px solid var(--linha)}
+.faq details:last-child{border-bottom:1.5px solid var(--linha)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px 0;font-size:16.5px;line-height:1.3;font-weight:600}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"";flex:none;width:18px;height:18px;background:linear-gradient(var(--vermelho),var(--vermelho)) center/100% 2px no-repeat,linear-gradient(var(--vermelho),var(--vermelho)) center/2px 100% no-repeat;transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details>div{padding:0 0 18px;font-size:15px;color:var(--texto);max-width:64ch}
+/* fecho */
+.fecho{background:var(--vermelho);color:#fff;position:relative;overflow:hidden}
+.fecho .wrap{position:relative;z-index:1;display:flex;flex-direction:column;gap:18px;align-items:stretch}
+.fecho h2{font-size:clamp(28px,4.4vw,48px);max-width:18ch}
+.fecho p{font-size:16px;color:#FFE9E4;max-width:48ch}
+.fecho .btn-fechado{background:rgba(255,255,255,.18);color:#fff}
+.fecho .explosao{position:absolute;right:-70px;bottom:-90px;width:clamp(220px,36vw,420px);pointer-events:none}
+@media(min-width:700px){.fecho .wrap{align-items:flex-start}}
+footer span{line-height:1.6}
+@media(max-width:899px){footer{padding-bottom:calc(96px + env(safe-area-inset-bottom))}}
+/* barra fixa no celular */
+.barra{position:fixed;left:0;right:0;bottom:0;z-index:30;padding:10px max(16px,env(safe-area-inset-left)) calc(10px + env(safe-area-inset-bottom));background:rgba(39,20,22,.96);display:flex;align-items:center;gap:12px;color:var(--creme);transform:translateY(110%);transition:transform .25s}
+.barra.on{transform:none}
+.barra small{font-size:12.5px;line-height:1.3;flex:1}
+.barra small b{display:block;color:#fff;font-size:13.5px}
+.barra .btn{padding:12px 16px;min-height:44px;font-size:14px;white-space:nowrap}
+body.com-barra .setas{bottom:calc(86px + env(safe-area-inset-bottom))}
+@media(min-width:900px){.barra{display:none}body.com-barra .setas{bottom:calc(16px + env(safe-area-inset-bottom))}}
+
+.texto{max-width:68ch;display:flex;flex-direction:column;gap:14px}
+.texto h2{font-size:22px;color:var(--vinho);margin-top:18px}
+.texto p,.texto li{font-size:16px;line-height:1.65;color:var(--texto)}
+.texto ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
+.texto a{color:var(--vinho)}
+</style>
+</head>
+<body>
+<!--MENU:nenhum-->
+<main id="inicio">
+<section class="sec">
+  <div class="wrap texto">
+    <p class="eyebrow" style="color:var(--vermelho);font-weight:600">Instituto Fendas</p>
+    <h1 style="font-size:clamp(32px,5vw,52px);color:var(--vinho)">Privacidade e cookies</h1>
+    <p>Este site é do Instituto Fendas de Saúde, Cultura e Interseccionalidade (CNPJ 65.465.820/0001-02, Fortaleza, CE). Aqui explicamos que dados o site coleta, para quê e como você decide sobre eles.</p>
+    <h2>O que o site coleta</h2>
+    <p>O site não tem formulário, cadastro nem área de login. Ele não pede seu nome, e-mail ou documento.</p>
+    <p>Se você aceitar os cookies, o site usa ferramentas da Meta (pixel do Facebook e Instagram) e do Google (Google Analytics e, quando houver, Google Ads) para registrar dados de navegação: páginas visitadas, cliques em botões de inscrição e contato, tipo de aparelho e de onde a visita veio. Essas empresas tratam os dados segundo as próprias políticas de privacidade.</p>
+    <p>Se você recusar, nenhuma dessas ferramentas é carregada.</p>
+    <h2>Para que usamos</h2>
+    <ul>
+      <li>Saber quais eventos e páginas interessam mais.</li>
+      <li>Medir se os anúncios do Instituto trazem pessoas interessadas.</li>
+      <li>Mostrar anúncios dos próximos eventos a quem já visitou o site.</li>
+    </ul>
+    <p>Não vendemos dados. A base legal é o seu consentimento, conforme a Lei Geral de Proteção de Dados (Lei nº 13.709/2018).</p>
+    <h2>Inscrições e pagamentos</h2>
+    <p>As inscrições e os pagamentos são feitos nas plataformas de venda (Hotmart ou Sympla), fora deste site. Os dados que você informa ali são tratados por elas e pelo Instituto apenas para a inscrição, o acesso às aulas e o certificado.</p>
+    <h2>Seus direitos</h2>
+    <p>Você pode mudar sua escolha sobre cookies a qualquer momento, pelo link "Preferências de cookies" no rodapé, ou apagar os cookies no seu navegador. Para pedir acesso, correção ou exclusão de dados, ou tirar dúvidas, escreva para <a href="mailto:institutofendas@gmail.com">institutofendas@gmail.com</a>.</p>
+  </div>
+</section>
+</main>
+<footer id="fim">
+  <div class="wrap">
+    <img src="{{of/wm-branco-verm.svg}}" alt="Instituto Fendas" width="1830" height="331">
+    <span>Instituto Fendas · CNPJ 65.465.820/0001-02 · Fortaleza, CE</span>
+  </div>
+</footer>
+</body>
+</html>

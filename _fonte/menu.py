@@ -1,6 +1,6 @@
 """Menu de todas as páginas. Nas fontes, o cabeçalho é o marcador <!--MENU:ativo-->.
 ativo: 'inicio' | 'final' | 'f:<slug-do-formato>' (página de formato ou de curso daquele formato)."""
-import re
+import re, rastreio
 
 FORMATOS = [('clubes-do-livro', 'Clubes do livro'), ('minicursos', 'Minicursos'), ('capacitacoes', 'Capacitações'),
             ('grupos-de-estudos', 'Grupos de estudos'), ('cursos', 'Cursos')]
@@ -122,7 +122,7 @@ def aplicar(html):
     html = re.sub(r"@font-face\{font-family:'Syne'[^\n]*\n", '', html)
     html = re.sub(r'<body>', '<body>\n<a class="pular" href="#inicio">Pular para o conteúdo</a>', html, count=1)
     html = html.replace('</body>', JS + GERAL_JS + '\n</body>', 1)
-    return html
+    return rastreio.aplicar(html)
 
 
 def og(titulo, desc, caminho, alt):

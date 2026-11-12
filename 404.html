@@ -366,5 +366,10 @@ html.js img[loading=lazy]{opacity:0;transition:opacity .5s}html.js img[loading=l
   els.forEach(function(el,i){if(el.getBoundingClientRect().top<innerHeight*.92)return;el.classList.add('rv');var p=el.previousElementSibling;if(p&&p.classList.contains('rv'))el.style.transitionDelay=(Math.min(i%4,3)*70)+'ms';io.observe(el)});
 })();
 </script>
+<script>
+(function(){try{var q=new URLSearchParams(location.search),k=['utm_source','utm_medium','utm_campaign','utm_content','utm_term','src','sck'],p={};
+k.forEach(function(x){if(q.get(x))p[x]=q.get(x)});try{if(Object.keys(p).length)sessionStorage.setItem('fendas_utm',JSON.stringify(p));else p=JSON.parse(sessionStorage.getItem('fendas_utm')||'{}')}catch(e){}
+if(!Object.keys(p).length)return;document.querySelectorAll('a[href*="pay.hotmart.com"],a[href*="sympla.com.br"]').forEach(function(a){var u=new URL(a.href);Object.keys(p).forEach(function(x){if(!u.searchParams.has(x))u.searchParams.set(x,p[x])});a.href=u.toString()})}catch(e){}})();
+</script>
 </body>
 </html>

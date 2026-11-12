@@ -1,6 +1,6 @@
 """Gera a página de um curso do Instituto Fendas a partir de um dicionário de dados.
 Uso: python3 curso.py <slug>  ->  curso-<slug>-src.html  (depois build.py)"""
-import sys, html, re
+import sys, html, re, json
 
 BIOS = {
  'rodrigo': ('Rodrigo Bandeira', 'CRP 11/17651', 'Psicólogo (UFC). Mestrando em Saúde Coletiva (UECE). Residência em Cancerologia (ICC). Especialista em Sexologia e em Gênero e Sexualidade. Gestalt-terapeuta individual e de relacionamentos.'),
@@ -394,6 +394,7 @@ def gerar(slug):
 <!--MENU:f:{c["formato_slug"]}-->
 <nav class="trilha" aria-label="Você está em"><div class="wrap"><a href="/">Início</a><span aria-hidden="true">›</span><a href="/formatos/{c["formato_slug"]}/">{esc(c["formato_plural"])}</a><span aria-hidden="true">›</span><b>{esc(nome)}</b></div></nav>
 
+<!--VER:{json.dumps(dict(nome=c["formato"]+" "+nome, categoria=c["formato"], valor=(float(c["inscricao"]["lotes"][0][0].replace("R$","").replace(".","").replace(",",".")) if aberto else None)), ensure_ascii=False)}-->
 <main id="inicio">
 {demo}<section class="hero">
   <img class="marca" src="{{{{of/ic-{MARCAS[slug][0]}.svg|#d62929=#A62340}}}}" style="--giro:{MARCAS[slug][1]}deg" alt="" aria-hidden="true">

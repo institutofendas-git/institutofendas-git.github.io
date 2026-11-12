@@ -1,12 +1,13 @@
 """Monta o site real em ../site-v2 (depois copiado para o clone do repositório).
 Caminhos: /eventos/<slug>/, /formatos/<slug>/, /final-de-ano/, /assets/. /cursos/<slug>/ redireciona para /eventos/<slug>/."""
-import os, re, shutil, glob, sys, menu, ativos
+import os, re, shutil, glob, sys, menu, ativos, rastreio
 R = sys.argv[1] if len(sys.argv) > 1 else '/home/claude/site-v2'
 U = 'https://institutofendas.com.br'
 shutil.rmtree(R, ignore_errors=True); os.makedirs(R)
 pares = [('home4-src.html', 'index.html'), ('src.html', 'final-de-ano/index.html')]
 pares += [(f, 'eventos/%s/index.html' % f[6:-9]) for f in sorted(glob.glob('curso-*-src.html'))]
 pares += [(f, 'formatos/%s/index.html' % f[8:-9]) for f in sorted(glob.glob('formato-*-src.html'))]
+if rastreio.ATIVO: pares.append(('privacidade-src.html', 'privacidade/index.html'))
 urls = []
 for src, out in pares:
     h = ativos.resolver(menu.sem_depoimentos(menu.aplicar(open(src).read())), '/assets/', R)
