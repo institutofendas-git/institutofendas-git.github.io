@@ -73,7 +73,7 @@ def _zap():
 
 
 def bloco(slugs):
-    return _bloco(slugs) + _zap()
+    return _bloco(slugs)
 
 
 def _bloco(slugs):

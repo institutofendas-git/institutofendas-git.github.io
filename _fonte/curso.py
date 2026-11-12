@@ -368,8 +368,7 @@ def gerar(slug):
     pessoas = ''.join(f'<div class="pessoa">{foto(k)}<div class="txt"><h3>{BIOS[k][0]}</h3><p>{BIOS[k][2]}</p><small>{BIOS[k][1]}</small></div></div>' for k in c['facilitadores'])
     depos = ''.join(f'<figure><blockquote>{LOREM}</blockquote><figcaption><div class="avatar" role="img" aria-label="Espaço para a foto">foto</div><div><b>{n}</b><span>{q}</span></div></figcaption></figure>' for n, q in DEPOIMENTOS)
     faq = ''.join(f'<details><summary>{esc(q)}</summary><div><p>{esc(a)}</p></div></details>' for q, a in FAQ)
-    import zap
-    faq += f'<details><summary>Ainda tenho dúvida. Com quem falo?</summary><div><p>Com a equipe do Instituto, pelo <a href="{zap.link("Olá! Vim pelo site e tenho uma dúvida sobre " + c["formato"].lower() + " " + nome + ".")}">WhatsApp, {zap.EXIBIR}</a>, ou pelo e-mail <a href="mailto:institutofendas@gmail.com">institutofendas@gmail.com</a>.</p></div></details>'
+    faq += '<details><summary>Ainda tenho dúvida. Com quem falo?</summary><div><p>Com a equipe do Instituto, pelo Instagram <a href="https://instagram.com/institutofendas">@institutofendas</a> ou pelo e-mail <a href="mailto:institutofendas@gmail.com">institutofendas@gmail.com</a>.</p></div></details>'
     titulo = f'{nome}: {sub}' if sub else nome
     carga = dict(c['fatos']).get('Carga','')
     base = open('base.css').read()
