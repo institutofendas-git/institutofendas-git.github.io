@@ -234,6 +234,8 @@ footer a:hover{opacity:1;text-decoration:underline}
 body.com-barra .setas{bottom:calc(86px + env(safe-area-inset-bottom))}
 @media(min-width:900px){body.com-barra .setas{bottom:calc(16px + env(safe-area-inset-bottom))}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn,.barra,summary::after{transition:none}}
+.aviso-fim{background:var(--escuro);color:var(--creme);text-align:center;padding:12px 16px;font-size:14.5px;line-height:1.45}
+.btn.fechado{background:var(--linha)!important;color:var(--verde)!important;border-color:var(--linha)!important;cursor:default}
 
 /* ---------- menu ---------- */
 [hidden]{display:none!important}
@@ -330,7 +332,7 @@ html.js img[loading=lazy]{opacity:0;transition:opacity .5s}html.js img[loading=l
 </header>
 
 
-<main id="topo">
+<main id="inicio">
 <section class="hero rachado">
   <div class="wrap">
     <div class="hero-txt">
@@ -494,7 +496,7 @@ html.js img[loading=lazy]{opacity:0;transition:opacity .5s}html.js img[loading=l
       <li><span class="ic"><img src="/assets/ic-camadas.ddd098d5.svg" alt=""></span><span class="n">01</span><h3>Compra segura</h3><p>Realizada integralmente pela plataforma Hotmart. Pagamento via Pix ou cartão de crédito (à vista ou parcelado). Boleto indisponível.</p></li>
       <li><span class="ic"><img src="/assets/ic-feixe_luz.9af43d83.svg" alt=""></span><span class="n">02</span><h3>Acesso imediato</h3><p>Após a aprovação do pagamento, as orientações de acesso chegam diretamente ao e-mail informado no momento da compra.</p></li>
       <li><span class="ic"><img src="/assets/ic-fenda.23793c1a.svg" alt=""></span><span class="n">03</span><h3>Estudo flexível</h3><p>Aulas gravadas e materiais complementares disponíveis para assistir online quantas vezes quiser até 31/01/2027.</p></li>
-      <li><span class="ic"><img src="/assets/ic-explosaao.770f370e.svg" alt=""></span><span class="n">04</span><h3>Certificação</h3><p>Um certificado por evento, emitido após o preenchimento do formulário de avaliação correspondente dentro de cada curso.</p></li>
+      <li><span class="ic"><img src="/assets/ic-explosaao.770f370e.svg" alt=""></span><span class="n">04</span><h3>Certificação</h3><p>Um certificado por evento, emitido após o preenchimento do formulário de avaliação correspondente de cada evento.</p></li>
     </ol>
   </div>
 </section>
@@ -545,12 +547,12 @@ html.js img[loading=lazy]{opacity:0;transition:opacity .5s}html.js img[loading=l
   <div class="wrap">
     <img src="/assets/wm-branco-verm.9414302b.svg" alt="Instituto Fendas" width="1830" height="331">
     <nav><a href="mailto:institutofendas@gmail.com">institutofendas@gmail.com</a><a href="https://instagram.com/institutofendas">@institutofendas</a></nav>
-    <span>© <span class="ano">2026</span> Instituto Fendas · CNPJ 65.465.820/0001-02 · Fortaleza, CE<br>Inscrições abertas de 13/11/2026 a 11/12/2026.</span>
+    <span>© <span class="ano">2026</span> Instituto Fendas · CNPJ 65.465.820/0001-02 · Fortaleza, CE<br><span class="periodo">Inscrições abertas de 13/11/2026 a 11/12/2026.</span></span>
   </div>
 </footer>
 
 <nav class="setas" aria-label="Navegar pela página">
-  <a href="#topo" aria-label="Voltar ao início"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15l6-6 6 6"/></svg></a>
+  <a href="#inicio" aria-label="Voltar ao início"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15l6-6 6 6"/></svg></a>
   <a href="#fim" aria-label="Ir para o fim"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
 </nav>
 <div class="barra" aria-hidden="true"><small>5 combos · a partir de <b>R$&nbsp;82,35</b></small><a class="btn btn-vermelho" href="#combos" tabindex="-1">Ver combos</a></div>
@@ -566,6 +568,15 @@ html.js img[loading=lazy]{opacity:0;transition:opacity .5s}html.js img[loading=l
 </script>
 <script>
 (function(){var b=document.querySelector('.setas');if(!b)return;function u(){b.classList.toggle('on',window.scrollY>window.innerHeight*0.8)}window.addEventListener('scroll',u,{passive:true});u();})();
+</script>
+<script>
+(function(){if(Date.now()<Date.parse('2026-12-12T00:00:00-03:00'))return;
+var m=document.getElementById('inicio');if(m){var a=document.createElement('div');a.className='aviso-fim';a.innerHTML='As inscrições do Final de ano no Fendas foram encerradas em 11/12/2026. Quem comprou segue com acesso até 31/01/2027.';m.insertBefore(a,m.firstChild)}
+document.querySelectorAll('a[href*="pay.hotmart.com"]').forEach(function(l){var s=document.createElement('span');s.className=l.className+' fechado';s.textContent='Inscrições encerradas';l.replaceWith(s)});
+document.querySelectorAll('.periodo').forEach(function(e){e.textContent='Inscrições encerradas em 11/12/2026.'});
+document.querySelectorAll('.fatos li span').forEach(function(e){if(e.textContent==='Inscrições')e.nextElementSibling.textContent='encerradas em 11/12/2026'});
+var b=document.querySelector('.barra');if(b)b.remove();
+})();
 </script>
 <script>
 (function(){try{if(Date.now()>=Date.parse('2026-12-12T00:00:00-03:00')){document.querySelectorAll('.so-campanha').forEach(function(e){e.remove()});document.querySelectorAll('.pos-campanha').forEach(function(e){e.hidden=false})}}catch(e){}})();
