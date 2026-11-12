@@ -5,6 +5,7 @@ import json, re
 from curso import CSS, ICON_UP, ICON_DOWN, CURSOS, esc, card, CARDS_CSS, ORDEM
 from dados import FORMATOS
 from menu import og
+import zap
 
 TEMAS = [
  dict(slug='interseccionalidade-na-saude', perguntas=[('Por que somar opressões não basta para entender quem chega ao serviço?', 'conversas-interseccionais'), ('Como gênero, raça, classe e território viram determinantes do processo saúde-doença?', 'fendas-no-cuidado'), ('Quando a violência institucional produz mortes evitáveis?', 'fendas-no-cuidado'), ('Como a lente interseccional muda o atendimento na atenção primária, no hospital e na clínica?', 'conversas-interseccionais')], nome='Interseccionalidade na saúde', marca=('intersec', -8),
@@ -194,7 +195,7 @@ def gerar(t):
   <div class="wrap">
     <h2>O tema continua.</h2>
     <p>As próximas turmas são anunciadas primeiro no Instagram. Enquanto isso, dá para conhecer os formatos em que o Instituto trabalha.</p>
-    <div class="outros"><a class="ig" href="https://instagram.com/institutofendas">Seguir @institutofendas</a>{formatos}</div>
+    <div class="outros"><a class="ig" href="https://instagram.com/institutofendas">Seguir @institutofendas</a><a href="{zap.link()}">WhatsApp</a>{formatos}</div>
   </div>
 </section>
 </main>

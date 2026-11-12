@@ -28,6 +28,7 @@ CSS = r"""
 .ab.compacto .linha{font-size:13.5px;color:var(--verde)}
 .ab.medio .cap{min-height:170px}
 .ab.medio h3{font-size:clamp(20px,2.2vw,26px)}
+.zap-abertos{margin-top:18px;font-size:15px;color:var(--texto)}.zap-abertos a{display:inline-flex;align-items:center;gap:6px;color:var(--vinho);font-weight:600}.zap-abertos svg{width:18px;height:18px}
 .abertos .resto{display:grid;gap:12px;align-content:start}
 @media(min-width:700px){.abertos.n2{grid-template-columns:1fr 1fr}}
 @media(min-width:900px){.abertos.n1 .ab{grid-template-columns:5fr 7fr}.abertos.n1 .cap{min-height:100%}
@@ -66,7 +67,16 @@ def cartao(slug, tipo):
             f'<span class="ir">Ver o evento <span aria-hidden="true">→</span></span></span></a>')
 
 
+def _zap():
+    import zap
+    return f'<p class="zap-abertos">Dúvida sobre algum evento? <a href="{zap.link()}">{zap.ICONE}Fale com a gente no WhatsApp</a></p>'
+
+
 def bloco(slugs):
+    return _bloco(slugs) + _zap()
+
+
+def _bloco(slugs):
     s = sorted(slugs, key=lambda x: _info(x)['iso'])
     if len(s) == 1:
         return f'<div class="abertos n1">{cartao(s[0], "grande")}</div>'
