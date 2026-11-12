@@ -120,11 +120,12 @@ def aplicar(html):
     if not m:
         return html
     html = html.replace(m.group(0), header(m.group(1)))
-    html = html.replace('</style>', CSS + GERAL_CSS + '</style>', 1)
+    anim = m.group(1) != 'inicio'
+    html = html.replace('</style>', CSS + GERAL_CSS + (ANIM_CSS if anim else '') + '</style>', 1)
     html = html.replace('<style>', HEAD + '<style>', 1)
     html = re.sub(r"@font-face\{font-family:'Syne'[^\n]*\n", '', html)
     html = re.sub(r'<body>', '<body>\n<a class="pular" href="#inicio">Pular para o conteúdo</a>', html, count=1)
-    html = html.replace('</body>', JS + GERAL_JS + '\n</body>', 1)
+    html = html.replace('</body>', JS + GERAL_JS + (ANIM_JS if anim else '') + '\n</body>', 1)
     html = re.sub(r'<span>Instituto Fendas(?: © \d{4})? · CNPJ', '<span>© <span class="ano">2026</span> Instituto Fendas · CNPJ', html)
     html = html.replace('</body>', "<script>(function(){var a=Math.max(2026,new Date().getFullYear());document.querySelectorAll('.ano').forEach(function(e){e.textContent=a})})();</script>\n</body>", 1)
     return rastreio.aplicar(html)
@@ -167,4 +168,20 @@ GERAL_CSS = r"""
 
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}@view-transition{navigation:none}}
 """
-GERAL_JS = ""  # animações de entrada desligadas em 11/11/2026 (travavam na página inicial)
+GERAL_JS = ""
+# Animações de entrada ao rolar: ligadas em todas as páginas MENOS a inicial (travavam lá; decisão de Ilo, 11/11/2026).
+ANIM_CSS = r"""
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+html.js img[loading=lazy]{opacity:0;transition:opacity .5s}html.js img[loading=lazy].ok{opacity:1}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+"""
+ANIM_JS = r"""<script>
+(function(){
+  document.documentElement.classList.add('js');document.querySelectorAll('img[loading=lazy]').forEach(function(i){if(i.complete)i.classList.add('ok');else{i.addEventListener('load',function(){i.classList.add('ok')});i.addEventListener('error',function(){i.classList.add('ok')})}});
+  if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  var els=document.querySelectorAll('.sec .cab,.fcard,.cards>li,.chips,.tile,.pessoa,.encontros>li,.cert,.card-aberto,.combo,.nome-fenda,.pergs li,.linha-tempo>li,.ensaio,.qs-foto,.chamada,.dobra,.faq details,.passos>li');
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px'});
+  els.forEach(function(el,i){if(el.getBoundingClientRect().top<innerHeight*.92)return;el.classList.add('rv');var p=el.previousElementSibling;if(p&&p.classList.contains('rv'))el.style.transitionDelay=(Math.min(i%4,3)*70)+'ms';io.observe(el)});
+})();
+</script>"""
