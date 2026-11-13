@@ -29,6 +29,7 @@ CSS = r"""
 .ab.compacto .linha{font-size:13.5px;color:var(--verde)}
 .ab.medio .cap{min-height:170px}
 .ab.medio h3{font-size:clamp(20px,2.2vw,26px)}
+.ab[hidden]{display:none!important}
 .ab .capas-c{display:grid;grid-template-columns:repeat(5,1fr)}.ab .capas-c span{background-size:cover;background-position:center}.ab .capas-c span:first-child{background-position:center bottom}
 .abertos .resto{display:grid;gap:12px;align-content:start}
 @media(min-width:700px){.abertos.n2{grid-template-columns:1fr 1fr}}
@@ -39,11 +40,12 @@ CSS = r"""
 
 JS = r"""<script>
 (function(){var hoje=new Date();hoje.setHours(0,0,0,0);var b=document.querySelector('.abertos');if(!b)return;
-b.querySelectorAll('[data-fim]').forEach(function(a){var p=a.dataset.fim.split('-');if(new Date(+p[0],p[1]-1,+p[2])<=hoje)a.remove()});
-var r=b.querySelector('.resto');if(r&&!r.children.length)r.remove();
-var n=b.querySelectorAll('[data-fim]').length;if(!n){var s=b.closest('section');if(s)s.remove();document.querySelectorAll('.mbtn.aberto-agora,a[href="#aberto"],a[href="/#aberto"]').forEach(function(x){x.remove()});return}
+function d(s){var p=s.split('-');return new Date(+p[0],p[1]-1,+p[2])}
+b.querySelectorAll('[data-fim]').forEach(function(a){if(d(a.dataset.fim)<=hoje){a.remove();return}if(!a.dataset.de||d(a.dataset.de)<=hoje)a.hidden=false});
+var r=b.querySelector('.resto');if(r&&!r.querySelector('.ab:not([hidden])'))r.remove();
+var n=b.querySelectorAll('.ab:not([hidden])').length;if(!n){var s=b.closest('section');if(s)s.remove();document.querySelectorAll('.mbtn.aberto-agora,a[href="#aberto"],a[href="/#aberto"]').forEach(function(x){x.remove()});return}
 if(n<3&&b.classList.contains('n3')){var c=b.querySelectorAll('.ab');b.className='abertos n'+n;c.forEach(function(x){x.classList.remove('grande','compacto');x.classList.add(n==1?'grande':'medio');b.appendChild(x)})}
-else if(n==1&&b.classList.contains('n2')){b.className='abertos n1';b.querySelector('.ab').classList.replace('medio','grande')}})();
+else if(n==1&&b.classList.contains('n2')){b.className='abertos n1';b.querySelectorAll('.ab').forEach(function(x){x.classList.replace('medio','grande')})}})();
 </script>"""
 
 
@@ -59,25 +61,23 @@ CAMPANHAS = [dict(
 
 
 def _evento(slug):
-    """Dados do cartão de um evento aberto. Antes de começar: selo 'Início dd/mm', some no primeiro encontro.
-    Vendendo depois de começar (inscricao['ate']): selo 'até dd/mm', valor do lote vigente, some no dia seguinte ao fim das inscrições."""
-    import curso
+    """As versões do cartão de um evento aberto, cada uma com a sua janela de datas (troca sozinha no navegador):
+    1) antes do primeiro encontro: selo 'Início dd/mm', valor do 1º lote com a data da virada;
+    2) do primeiro encontro até o fim das inscrições (regra: 7 dias depois do último encontro): selo 'até dd/mm', valor do lote vigente."""
+    import curso, datetime as dt
     c = CURSOS[slug]; i = c['inscricao']; n = len(c['modulos'])
-    ano = (dict(c['fatos']).get('Datas') or dict(c['fatos']).get('Data'))[-4:]
-    ini = c['modulos'][0][0]; iso_ini = f"{ano}-{ini[3:5]}-{ini[:2]}"
-    cert = f"{c['horas'][0]}h"
-    if i.get('ate'):
-        ate = i['ate']; v = i['lotes'][-1][0]
-        return dict(href=f'/eventos/{slug}/', fim=curso.fim_insc(c), ordem=f"{ate[6:]}-{ate[3:5]}-{ate[:2]}", selo=f'até {ate[:5]}',
-                    nome=c['nome'], sub=c['sub'], ds=c['chamada'], botao='Quero me inscrever',
-                    dados=[('Formato', f"{c['formato']} · {n} {'encontro gravado' if n == 1 else 'encontros gravados'}, online", c['formato']),
-                           ('Valor', v, v), ('Certificação', cert, cert)],
-                    linha=f"{c['formato']} · {v}", cap=_cap(c))
-    v, _ = i['lotes'][0]; valor = f'{v} até {ini}'
-    return dict(href=f'/eventos/{slug}/', fim=iso_ini, ordem=iso_ini, selo=f'Início {ini}', nome=c['nome'], sub=c['sub'], ds=c['chamada'],
-                botao='Quero me inscrever', dados=[('Formato', f"{c['formato']} · {n} {'encontro' if n == 1 else 'encontros'} ao vivo, online", c['formato']),
-                                             ('Valor', valor, valor), ('Certificação', cert, cert)],
-                linha=f"{c['formato']} · {valor}", cap=_cap(c))
+    ini = c['modulos'][0][0]; iso_ini = curso.primeiro_encontro(c).isoformat()
+    cert = f"{c['horas'][0]}h"; fim = curso.fim_insc(c); ate = curso.fim_inscricoes(c)
+    v1, _ = i['lotes'][0]; valor = f'{v1} até {ini}'; v = i['lotes'][-1][0]
+    base = dict(href=f'/eventos/{slug}/', nome=c['nome'], sub=c['sub'], ds=c['chamada'], botao='Quero me inscrever', cap=_cap(c))
+    antes = dict(base, de=None, fim=iso_ini, ordem=iso_ini, selo=f'Início {ini}',
+                 dados=[('Formato', f"{c['formato']} · {n} {'encontro' if n == 1 else 'encontros'} ao vivo, online", c['formato']),
+                        ('Valor', valor, valor), ('Certificação', cert, cert)], linha=f"{c['formato']} · {valor}")
+    depois = dict(base, de=iso_ini, fim=fim, ordem=ate.isoformat(), selo=f"até {ate.strftime('%d/%m')}",
+                  dados=[('Formato', f"{c['formato']} · {n} {'encontro' if n == 1 else 'encontros'}, online", c['formato']),
+                         ('Valor', v, v), ('Certificação', cert, cert)], linha=f"{c['formato']} · {v}")
+    hoje = dt.date.today().isoformat()
+    return [x for x in (antes, depois) if x['fim'] > hoje]
 
 
 def _cap(c):
@@ -86,33 +86,40 @@ def _cap(c):
 
 
 def cartao(it, tipo):
+    import datetime as dt
     e = H.escape
+    datas = (f' data-de="{it["de"]}"' if it.get('de') else '') + f' data-fim="{it["fim"]}"'
+    if it.get('de') and it['de'] > dt.date.today().isoformat(): datas += ' hidden'
     if tipo == 'compacto':
-        return (f'<a class="ab compacto" href="{it["href"]}" data-fim="{it["fim"]}">{it["cap"]}<span class="tx"><span class="selo">{it["selo"]}</span>'
+        return (f'<a class="ab compacto" href="{it["href"]}"{datas}>{it["cap"]}<span class="tx"><span class="selo">{it["selo"]}</span>'
                 f'<h3>{e(it["nome"])}</h3><span class="linha">{e(it["linha"])}</span></span></a>')
     sub = f':<span>{e(it["sub"])}</span>' if it['sub'] else ''
     dados = ''.join(f'<span><b>{r}</b>{e(g if tipo == "grande" else m)}</span>' for r, g, m in it['dados'])
-    return (f'<a class="ab {tipo}" href="{it["href"]}" data-fim="{it["fim"]}">{it["cap"]}<span class="tx"><span class="selo">{it["selo"]}</span>'
+    return (f'<a class="ab {tipo}" href="{it["href"]}"{datas}>{it["cap"]}<span class="tx"><span class="selo">{it["selo"]}</span>'
             f'<h3>{e(it["nome"])}{sub}</h3><span class="ds">{e(it["ds"])}</span>'
             f'<span class="dados">{dados}</span>'
             f'<span class="ir">{it["botao"]} <span aria-hidden="true">→</span></span></span></a>')
 
 
 def itens(slugs):
-    """Eventos abertos + campanhas ainda vigentes, pela data mais próxima (início ou fim das inscrições)."""
+    """Lugares no bloco: cada evento aberto (com as suas versões por data) e cada campanha vigente, pela data mais próxima."""
     import datetime as dt
     hoje = dt.date.today().isoformat()
-    todos = [_evento(x) for x in slugs] + [c for c in CAMPANHAS if c['fim'] > hoje]
-    return sorted([x for x in todos if x['fim'] > hoje], key=lambda x: x['ordem'])
+    lugares = [v for v in (_evento(x) for x in slugs) if v] + [[c] for c in CAMPANHAS if c['fim'] > hoje]
+    return sorted(lugares, key=lambda l: l[0]['ordem'])
+
+
+def _lugar(l, tipo):
+    return ''.join(cartao(x, tipo) for x in l)
 
 
 def bloco(slugs):
     s = itens(slugs)
     if len(s) == 1:
-        return f'<div class="abertos n1">{cartao(s[0], "grande")}</div>'
+        return f'<div class="abertos n1">{_lugar(s[0], "grande")}</div>'
     if len(s) == 2:
-        return f'<div class="abertos n2">{cartao(s[0], "medio")}{cartao(s[1], "medio")}</div>'
-    return f'<div class="abertos n3">{cartao(s[0], "grande")}<div class="resto">{"".join(cartao(x, "compacto") for x in s[1:])}</div></div>'
+        return f'<div class="abertos n2">{_lugar(s[0], "medio")}{_lugar(s[1], "medio")}</div>'
+    return f'<div class="abertos n3">{_lugar(s[0], "grande")}<div class="resto">{"".join(_lugar(x, "compacto") for x in s[1:])}</div></div>'
 
 
 def abertos():

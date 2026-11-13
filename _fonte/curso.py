@@ -1,5 +1,6 @@
 """Gera a página de um curso do Instituto Fendas a partir de um dicionário de dados.
 Uso: python3 curso.py <slug>  ->  curso-<slug>-src.html  (depois build.py)"""
+import re
 import sys, html, re, json
 
 BIOS = {
@@ -276,19 +277,49 @@ def quem(c):
     nomes = [BIOS[k][0] for k in f]
     return 'Com ' + (nomes[0] if len(nomes) == 1 else ', '.join(nomes[:-1]) + ' e ' + nomes[-1])
 
+import datetime as _dt
+
+def _data(c, ddmm):
+    """'dd/mm' de um encontro do evento -> date, com o ano tirado das datas do evento."""
+    f = dict(c['fatos']); ano = int((f.get('Datas') or f.get('Data'))[-4:])
+    return _dt.date(ano, int(ddmm[3:5]), int(ddmm[:2]))
+
+def ultimo_encontro(c): return _data(c, c['modulos'][-1][0])
+def primeiro_encontro(c): return _data(c, c['modulos'][0][0])
+
+def fim_inscricoes(c):
+    """Último dia de inscrições: o informado em inscricao['ate'] ou, por regra (Ilo, 13/11/2026), 7 dias depois do último encontro."""
+    a = c.get('inscricao', {}).get('ate')
+    if a: return _dt.date(int(a[6:]), int(a[3:5]), int(a[:2]))
+    return ultimo_encontro(c) + _dt.timedelta(days=7)
+
+def acesso_ate(c):
+    """Fim do acesso às gravações ('dd/mm'): o informado, ou o prazo 'fim do acesso' da página."""
+    a = c.get('inscricao', {}).get('acesso')
+    if a: return a
+    for d, t in c.get('prazos', []):
+        if 'fim do acesso' in t: return d
+    return None
+
 def fim_insc(c):
-    """Dia seguinte ao fim das inscrições (ISO), quando o evento vende depois de começar; senão None."""
-    a = c.get('inscricao', {}).get('ate') if c.get('status') == 'aberto' else None
-    if not a: return None
-    import datetime as dt
-    d = dt.date(int(a[6:]), int(a[3:5]), int(a[:2])) + dt.timedelta(days=1)
-    return d.isoformat()
+    """Dia seguinte ao fim das inscrições (ISO), para eventos abertos; senão None."""
+    if c.get('status') != 'aberto': return None
+    return (fim_inscricoes(c) + _dt.timedelta(days=1)).isoformat()
+
+def fase(de, ate, html, tag='span'):
+    """Trecho que só aparece entre as datas de (inclusive) e ate (exclusive), ISO. A troca acontece no navegador (menu.aplicar);
+    no build já sai o que passou e fica escondido o que ainda não começou."""
+    hoje = _dt.date.today().isoformat()
+    if ate and ate <= hoje: return ''
+    attrs = (f' data-de="{de}"' if de else '') + (f' data-ate="{ate}"' if ate else '')
+    escondido = ' hidden' if de and de > hoje else ''
+    return f'<{tag} class="fase"{attrs}{escondido}>{html}</{tag}>'
 
 def alterna(c, a, b, tag='span'):
-    """Mostra a até o fim das inscrições e b depois (troca feita no navegador, ver menu.aplicar)."""
+    """Mostra a até o fim das inscrições e b depois."""
     f = fim_insc(c)
     if not f: return a
-    return f'<{tag} class="ate-insc" data-fim="{f}">{a}</{tag}><{tag} class="pos-insc" hidden>{b}</{tag}>'
+    return fase(None, f, a, tag) + fase(f, None, b, tag)
 
 def situacao(c):
     if c.get('status') != 'aberto': return 'encerrado'
@@ -344,6 +375,8 @@ def gerar(slug):
     ig_txt = 'Esta turma não tem gravação à venda. Os próximos eventos são anunciados no Instagram do Instituto.'
     ig_barra = '<a class="btn btn-vermelho" href="https://instagram.com/institutofendas">Instagram</a>'
     ig_fecho = ' Acompanhe o Instituto para saber dos próximos eventos.'
+    if c.get('status') == 'aberto' and not c.get('encerrado_em'):
+        c['encerrado_em'] = ultimo_encontro(c).strftime('%d/%m/%Y')
     ig_small = 'turma de ' + c['encerrado_em'][-4:]
     def t(a, b): return f'<span class="so-campanha">{a}</span><span class="pos-campanha" hidden>{b}</span>' if cs else b
     def bt(a, b): return (a.replace('class="btn', 'class="so-campanha btn', 1) + b.replace('class="btn', 'hidden class="pos-campanha btn', 1)) if cs else b
@@ -368,14 +401,29 @@ def gerar(slug):
         insc = f'<div class="st">{ICONS["cal"]}<p class="preco"><b style="display:block;font-size:16px">Inscrições abertas</b>{lotes}<br>{esc(i["pagamento"])}</p></div><div class="botoes"><a class="btn btn-vermelho" href="{i["url"]}">Inscrever-se</a></div>'
         fecho = f'<h2>Começa em {c["modulos"][0][0]}.</h2><p>{v1} {q1}. Encontros ao vivo, com gravação e certificado de {c["horas"][0]}h.</p><div class="botoes"><a class="btn btn-creme" href="{i["url"]}">Inscrever-se</a></div>'
         barra = f'<small><b>{v1}</b>{q1}</small><a class="btn btn-vermelho" tabindex="-1" href="{i["url"]}">Inscrever-se</a>'
-        if i.get('ate'):  # vende depois de começar: gravações + certificado, até a data de fim das inscrições
-            v = i['lotes'][-1][0]; ate = i['ate'][:5]; n = len(c['modulos'])
-            enc = 'O encontro já aconteceu' if n == 1 else f'Os {n} encontros já aconteceram'
-            grav = f'{enc}: você assiste às gravações até {i["acesso"]} e recebe o certificado de {c["horas"][0]}h.'
-            selo = alterna(c, f'<span class="selo-status aberto">inscrições abertas até {ate}</span>', fechada['selo'])
-            insc = alterna(c, f'<div class="st">{ICONS["cal"]}<p class="preco"><b style="display:block;font-size:16px">Inscrições abertas até {ate}</b><b>{v}</b><br>{esc(grav)}<br>{esc(i["pagamento"])}</p></div><div class="botoes"><a class="btn btn-vermelho" href="{i["url"]}">Inscrever-se</a></div>', fechada['insc'], 'div')
-            fecho = alterna(c, f'<h2>Inscrições até {ate}.</h2><p>{v}. {esc(grav)}</p><div class="botoes"><a class="btn btn-creme" href="{i["url"]}">Inscrever-se</a></div>', fechada['fecho'], 'div')
-            barra = alterna(c, f'<small><b>{v}</b>até {ate}</small><a class="btn btn-vermelho" tabindex="-1" href="{i["url"]}">Inscrever-se</a>', fechada['barra'], 'div')
+        # Depois do último encontro, segue aberto (gravações + certificado) até o fim das inscrições; depois, encerrado. Tudo por data, sozinho.
+        pos = (ultimo_encontro(c) + _dt.timedelta(days=1)).isoformat(); fim = fim_insc(c)
+        v = i['lotes'][-1][0]; ate = fim_inscricoes(c).strftime('%d/%m'); n = len(c['modulos']); acc = acesso_ate(c)
+        enc = 'O encontro já aconteceu' if n == 1 else f'Os {n} encontros já aconteceram'
+        grav = f'{enc}: você assiste às gravações{" até " + acc if acc else ""} e recebe o certificado de {c["horas"][0]}h.'
+        B = dict(selo=f'<span class="selo-status aberto">inscrições abertas até {ate}</span>',
+                 insc=f'<div class="st">{ICONS["cal"]}<p class="preco"><b style="display:block;font-size:16px">Inscrições abertas até {ate}</b><b>{v}</b><br>{esc(grav)}<br>{esc(i["pagamento"])}</p></div><div class="botoes"><a class="btn btn-vermelho" href="{i["url"]}">Inscrever-se</a></div>',
+                 fecho=f'<h2>Inscrições até {ate}.</h2><p>{v}. {esc(grav)}</p><div class="botoes"><a class="btn btn-creme" href="{i["url"]}">Inscrever-se</a></div>',
+                 barra=f'<small><b>{v}</b>até {ate}</small><a class="btn btn-vermelho" tabindex="-1" href="{i["url"]}">Inscrever-se</a>')
+        def por_lote(fazer, tag):
+            """Um trecho por lote, cada um até a data da virada ('até dd/mm' inclusive)."""
+            out, de = '', None
+            for k, (vk, qk) in enumerate(i['lotes']):
+                m = re.search(r'até (\d\d/\d\d)', qk)
+                ate_k = (_data(c, m.group(1)) + _dt.timedelta(days=1)).isoformat() if m and k < len(i['lotes']) - 1 else None
+                out += fase(de, ate_k, fazer(k, vk, qk), tag); de = ate_k
+            return out
+        fecho = por_lote(lambda k, vk, qk: f'<h2>{"Começa em " + c["modulos"][0][0] + "." if k == 0 else "Inscrições abertas."}</h2><p>{vk} {qk}. Encontros ao vivo, com gravação e certificado de {c["horas"][0]}h.</p><div class="botoes"><a class="btn btn-creme" href="{i["url"]}">Inscrever-se</a></div>', 'div') if len(i['lotes']) > 1 else fecho
+        barra = por_lote(lambda k, vk, qk: f'<small><b>{vk}</b>{qk}</small><a class="btn btn-vermelho" tabindex="-1" href="{i["url"]}">Inscrever-se</a>', 'div') if len(i['lotes']) > 1 else barra
+        A = dict(selo=selo, insc=insc, fecho=fecho, barra=barra)
+        def tres(k, tag):
+            return fase(None, pos, A[k], tag) + fase(pos, fim, B[k], tag) + fase(fim, None, fechada[k], tag)
+        selo, insc, fecho, barra = tres('selo', 'span'), tres('insc', 'div'), tres('fecho', 'div'), tres('barra', 'div')
         if c.get('demo'): demo = '<div class="demo">Demonstração: como fica a página de um evento com inscrições abertas. Datas, valores e link são de exemplo.</div>'
     rel = ''.join(card(s) for s in relacionados(slug))
     intro = esc(c['chamada_longa']) if c.get('chamada_longa') else esc(c['sobre'][0])
@@ -420,7 +468,7 @@ def gerar(slug):
 <!--MENU:f:{c["formato_slug"]}-->
 <nav class="trilha" aria-label="Você está em"><div class="wrap"><a href="/">Início</a><span aria-hidden="true">›</span><a href="/formatos/{c["formato_slug"]}/">{esc(c["formato_plural"])}</a><span aria-hidden="true">›</span><b>{esc(nome)}</b></div></nav>
 
-<!--VER:{json.dumps(dict(nome=c["formato"]+" "+nome, categoria=c["formato"], valor=(float(c["inscricao"]["lotes"][-1 if c["inscricao"].get("ate") else 0][0].replace("R$","").replace(".","").replace(",",".")) if aberto else None)), ensure_ascii=False)}-->
+<!--VER:{json.dumps(dict(nome=c["formato"]+" "+nome, categoria=c["formato"], valor=(float(c["inscricao"]["lotes"][-1 if _dt.date.today() > primeiro_encontro(c) else 0][0].replace("R$","").replace(".","").replace(",",".")) if aberto else None)), ensure_ascii=False)}-->
 <main id="inicio">
 {demo}<section class="hero">
   <img class="marca" src="{{{{of/ic-{MARCAS[slug][0]}.svg|#d62929=#A62340}}}}" style="--giro:{MARCAS[slug][1]}deg" alt="" aria-hidden="true">
