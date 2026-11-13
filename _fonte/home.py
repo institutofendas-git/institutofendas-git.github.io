@@ -13,7 +13,7 @@ lista = ''.join(card(x, desc=True) for x in ORDEM)
 a = s.index('<ul>', s.index('<section class="sec formacoes"')); b = s.index('</ul>', a) + 5
 s = s[:a] + f'<div class="chips" role="group" aria-label="Filtrar por formato">{chips}</div>\n    <ul class="cards" id="lista-eventos">{lista}</ul>' + s[b:]
 rep('<section class="sec formacoes" id="formacoes">', '<section class="sec formacoes" id="eventos">')
-rep('As turmas abaixo já foram encerradas.</p>', 'Em ordem de data. As turmas abaixo já foram encerradas.</p>')
+rep('O que aconteceu ao vivo no ano de 2026. As turmas abaixo já foram encerradas.</p>', 'O que aconteceu ao vivo no ano de 2026, em ordem de data.</p>')
 rep('href="#formacoes"', 'href="#eventos"', 0) if 'href="#formacoes"' in s else None
 s = re.sub(r'<div class="foto" style="background-image:url\(({{fotos/p-[a-z]+\.webp}})\)" role="img" aria-label="([^"]+)"></div>',
            r'<div class="foto"><img src="\1" alt="\2" loading="lazy" decoding="async" width="640" height="800"></div>', s)

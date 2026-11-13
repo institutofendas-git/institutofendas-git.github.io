@@ -127,6 +127,9 @@ def aplicar(html):
     html = re.sub(r'<body>', '<body>\n<a class="pular" href="#inicio">Pular para o conteúdo</a>', html, count=1)
     html = html.replace('</body>', JS + GERAL_JS + (ANIM_JS if anim else '') + '\n</body>', 1)
     html = re.sub(r'<span>Instituto Fendas(?: © \d{4})? · CNPJ', '<span>© <span class="ano">2026</span> Instituto Fendas · CNPJ', html)
+    if 'class="ate-insc' in html:
+        html = html.replace('</style>', '.ate-insc,.pos-insc{display:contents}.pos-insc[hidden]{display:none}</style>', 1)
+        html = html.replace('</body>', "<script>(function(){var h=new Date();document.querySelectorAll('.ate-insc[data-fim]').forEach(function(a){var p=a.dataset.fim.split('-');if(new Date(+p[0],p[1]-1,+p[2])<=h){var b=a.nextElementSibling;a.remove();if(b&&b.classList.contains('pos-insc'))b.hidden=false}})})();</script>\n</body>", 1)
     html = html.replace('</body>', "<script>(function(){var a=Math.max(2026,new Date().getFullYear());document.querySelectorAll('.ano').forEach(function(e){e.textContent=a})})();</script>\n</body>", 1)
     return rastreio.aplicar(html)
 

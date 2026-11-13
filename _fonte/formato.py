@@ -65,7 +65,7 @@ def gerar(fslug, nome, plural, desc, longo, fatos):
 
 <section class="sec">
   <div class="wrap">
-    <div class="cab"><h2>Eventos de 2026</h2><p>O que aconteceu ao vivo neste formato em 2026. As turmas já foram encerradas. Toque para ver como foi.</p></div>
+    <div class="cab"><h2>Eventos de 2026</h2><p>O que aconteceu ao vivo neste formato em 2026. Toque em um evento para ver os detalhes.</p></div>
     <ul class="cards">{cards}</ul>
   </div>
 </section>

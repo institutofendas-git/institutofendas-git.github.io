@@ -276,7 +276,23 @@ def quem(c):
     nomes = [BIOS[k][0] for k in f]
     return 'Com ' + (nomes[0] if len(nomes) == 1 else ', '.join(nomes[:-1]) + ' e ' + nomes[-1])
 
-def situacao(c): return '<b>inscrições abertas</b>' if c.get('status') == 'aberto' else 'encerrado'
+def fim_insc(c):
+    """Dia seguinte ao fim das inscrições (ISO), quando o evento vende depois de começar; senão None."""
+    a = c.get('inscricao', {}).get('ate') if c.get('status') == 'aberto' else None
+    if not a: return None
+    import datetime as dt
+    d = dt.date(int(a[6:]), int(a[3:5]), int(a[:2])) + dt.timedelta(days=1)
+    return d.isoformat()
+
+def alterna(c, a, b, tag='span'):
+    """Mostra a até o fim das inscrições e b depois (troca feita no navegador, ver menu.aplicar)."""
+    f = fim_insc(c)
+    if not f: return a
+    return f'<{tag} class="ate-insc" data-fim="{f}">{a}</{tag}><{tag} class="pos-insc" hidden>{b}</{tag}>'
+
+def situacao(c):
+    if c.get('status') != 'aberto': return 'encerrado'
+    return alterna(c, '<b>inscrições abertas</b>', 'encerrado')
 
 def card(slug, desc=False):
     c = CURSOS[slug]
@@ -284,7 +300,7 @@ def card(slug, desc=False):
     d = f'<p class="desc">{esc(c["chamada"])}</p>' if desc else ''
     return (f'<li data-formato="{c["formato_slug"]}"><a href="/eventos/{slug}/"><span class="simb"><img src="{{{{{c["img"]}}}}}" alt="" loading="lazy" decoding="async" width="480" height="480"></span>'
             f'<div class="info"><small>{esc(c["formato"].lower())} · {periodo(c)} · {situacao(c)}</small><h3><b>{esc(c["nome"])}</b>{sub}</h3>'
-            f'<p class="com">{quem(c)}</p>{d}<span class="ver">{"Ver o evento" if c.get("status") == "aberto" else "Ver como foi"} {SETA}</span></div></a></li>')
+            f'<p class="com">{quem(c)}</p>{d}<span class="ver">{alterna(c, "Ver o evento", "Ver como foi") if c.get("status") == "aberto" else "Ver como foi"} {SETA}</span></div></a></li>')
 
 def relacionados(slug, n=3):
     c = CURSOS[slug]; outros = [s for s in ORDEM if s != slug and s in CURSOS]
@@ -345,12 +361,21 @@ def gerar(slug):
     barra = f'<small><b>Inscrições encerradas</b>{barra_small}</small>' + combo_barra.replace(' href=', ' tabindex="-1" href=')
     demo = ''
     if aberto:
+        fechada = dict(selo=selo, insc=insc, fecho=fecho, barra=barra)
         i = c['inscricao']; (v1, q1) = i['lotes'][0]
         lotes = '<br>'.join(f'<b>{v}</b> {q}' for v, q in i['lotes'])
         selo = '<span class="selo-status aberto">inscrições abertas</span>'
         insc = f'<div class="st">{ICONS["cal"]}<p class="preco"><b style="display:block;font-size:16px">Inscrições abertas</b>{lotes}<br>{esc(i["pagamento"])}</p></div><div class="botoes"><a class="btn btn-vermelho" href="{i["url"]}">Inscrever-se</a></div>'
         fecho = f'<h2>Começa em {c["modulos"][0][0]}.</h2><p>{v1} {q1}. Encontros ao vivo, com gravação e certificado de {c["horas"][0]}h.</p><div class="botoes"><a class="btn btn-creme" href="{i["url"]}">Inscrever-se</a></div>'
         barra = f'<small><b>{v1}</b>{q1}</small><a class="btn btn-vermelho" tabindex="-1" href="{i["url"]}">Inscrever-se</a>'
+        if i.get('ate'):  # vende depois de começar: gravações + certificado, até a data de fim das inscrições
+            v = i['lotes'][-1][0]; ate = i['ate'][:5]; n = len(c['modulos'])
+            enc = 'O encontro já aconteceu' if n == 1 else f'Os {n} encontros já aconteceram'
+            grav = f'{enc}: você assiste às gravações até {i["acesso"]} e recebe o certificado de {c["horas"][0]}h.'
+            selo = alterna(c, f'<span class="selo-status aberto">inscrições abertas até {ate}</span>', fechada['selo'])
+            insc = alterna(c, f'<div class="st">{ICONS["cal"]}<p class="preco"><b style="display:block;font-size:16px">Inscrições abertas até {ate}</b><b>{v}</b><br>{esc(grav)}<br>{esc(i["pagamento"])}</p></div><div class="botoes"><a class="btn btn-vermelho" href="{i["url"]}">Inscrever-se</a></div>', fechada['insc'], 'div')
+            fecho = alterna(c, f'<h2>Inscrições até {ate}.</h2><p>{v}. {esc(grav)}</p><div class="botoes"><a class="btn btn-creme" href="{i["url"]}">Inscrever-se</a></div>', fechada['fecho'], 'div')
+            barra = alterna(c, f'<small><b>{v}</b>até {ate}</small><a class="btn btn-vermelho" tabindex="-1" href="{i["url"]}">Inscrever-se</a>', fechada['barra'], 'div')
         if c.get('demo'): demo = '<div class="demo">Demonstração: como fica a página de um evento com inscrições abertas. Datas, valores e link são de exemplo.</div>'
     rel = ''.join(card(s) for s in relacionados(slug))
     intro = esc(c['chamada_longa']) if c.get('chamada_longa') else esc(c['sobre'][0])
@@ -395,7 +420,7 @@ def gerar(slug):
 <!--MENU:f:{c["formato_slug"]}-->
 <nav class="trilha" aria-label="Você está em"><div class="wrap"><a href="/">Início</a><span aria-hidden="true">›</span><a href="/formatos/{c["formato_slug"]}/">{esc(c["formato_plural"])}</a><span aria-hidden="true">›</span><b>{esc(nome)}</b></div></nav>
 
-<!--VER:{json.dumps(dict(nome=c["formato"]+" "+nome, categoria=c["formato"], valor=(float(c["inscricao"]["lotes"][0][0].replace("R$","").replace(".","").replace(",",".")) if aberto else None)), ensure_ascii=False)}-->
+<!--VER:{json.dumps(dict(nome=c["formato"]+" "+nome, categoria=c["formato"], valor=(float(c["inscricao"]["lotes"][-1 if c["inscricao"].get("ate") else 0][0].replace("R$","").replace(".","").replace(",",".")) if aberto else None)), ensure_ascii=False)}-->
 <main id="inicio">
 {demo}<section class="hero">
   <img class="marca" src="{{{{of/ic-{MARCAS[slug][0]}.svg|#d62929=#A62340}}}}" style="--giro:{MARCAS[slug][1]}deg" alt="" aria-hidden="true">
