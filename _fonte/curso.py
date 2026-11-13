@@ -73,7 +73,7 @@ ICONS = {
  'play':'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="15" rx="2"/><path d="m10 9 5 3-5 3V9Z"/></svg>',
  'book':'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5v-15Z"/><path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H20v3H6.5"/></svg>',
 }
-ICON_FATOS = {'Data':'cal','Datas':'cal','Horário':'clock','Encontros':'stack','Carga':'award','Onde':'screen'}
+ICON_FATOS = {'Data':'cal','Datas':'cal','Horário':'clock','Encontros':'stack','Carga':'award','Onde':'screen','Materiais':'book'}
 
 CSS = r"""
 /* ---------- página de curso ---------- */
@@ -113,7 +113,7 @@ body{font-size:16px}
 .resumo svg{width:22px;height:22px;flex:none;color:var(--vermelho);margin-top:1px}
 .resumo span{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--bege)}
 .resumo strong{display:block;font-size:14.5px;line-height:1.3;margin-top:3px}
-@media(min-width:900px){.resumo ul{grid-template-columns:repeat(5,1fr);gap:14px;padding-top:26px;padding-bottom:26px}.resumo li:last-child:nth-child(odd){grid-column:auto}}
+@media(min-width:900px){.resumo ul{grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;padding-top:26px;padding-bottom:26px}.resumo li:last-child:nth-child(odd){grid-column:auto}}
 /* inscrição */
 .inscricao{background:#F2EAD6}
 .inscricao .wrap{padding-top:22px;padding-bottom:22px;display:flex;flex-direction:column;gap:14px}
@@ -131,6 +131,11 @@ body{font-size:16px}
 .trilho{background:var(--verde);color:var(--creme)}
 .trilho .cab h2{color:#fff}.trilho .cab p{color:#E6DCC6}
 .encontros{list-style:none;margin:0;padding:0;display:grid;gap:10px;counter-reset:e}
+.materiais{margin-top:18px;display:flex;gap:16px;align-items:flex-start;background:var(--vinho);color:var(--creme);border-radius:12px;padding:20px 22px}
+.materiais>svg{width:34px;height:34px;flex:none;margin-top:2px;color:#F7A49A}
+.materiais h3{font-size:19px;margin:0 0 6px;color:#fff}
+.materiais p{margin:0;font-size:16px;line-height:1.5;color:#F2E4CB}
+@media(min-width:900px){.materiais{padding:24px 28px;align-items:center}.materiais>svg{width:42px;height:42px}}
 .encontro{background:rgba(249,242,222,.08);border:1px solid rgba(249,242,222,.22);border-radius:6px}
 .encontro summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:44px 1fr 20px;gap:12px;align-items:center;padding:16px}
 .encontro summary::-webkit-details-marker{display:none}
@@ -306,6 +311,25 @@ def fim_insc(c):
     if c.get('status') != 'aberto': return None
     return (fim_inscricoes(c) + _dt.timedelta(days=1)).isoformat()
 
+ARTIGO = {'Capacitação': 'A'}
+
+def unidade(c, n=None):
+    """'encontro(s)' ou 'módulo(s)', conforme o evento."""
+    n = len(c['modulos']) if n is None else n
+    u = (c.get('modulo_label') or 'Encontro').split()[0].lower()
+    return f'{n} {u}' if n == 1 else f'{n} {u}s'
+
+def ja_aconteceu(c):
+    """'O minicurso já aconteceu' / 'Os 4 encontros já aconteceram' / 'Os 3 módulos já aconteceram'."""
+    n = len(c['modulos'])
+    if n == 1: return f"{ARTIGO.get(c['formato'], 'O')} {c['formato'].lower()} já aconteceu"
+    return f'Os {unidade(c)} já aconteceram'
+
+def materiais(c):
+    """Datas dos materiais complementares: (início, fim do acesso), a partir dos prazos da página."""
+    ini = next((d for d, t in c.get('prazos', []) if 'materia' in t), None)
+    return ini, acesso_ate(c)
+
 def fase(de, ate, html, tag='span'):
     """Trecho que só aparece entre as datas de (inclusive) e ate (exclusive), ISO. A troca acontece no navegador (menu.aplicar);
     no build já sai o que passou e fica escondido o que ainda não começou."""
@@ -358,7 +382,12 @@ def jsonld(slug, c):
 def gerar(slug):
     c = CURSOS[slug]
     nome, sub = c['nome'], c['sub']
-    resumo = ''.join(f'<li>{ICONS[ICON_FATOS.get(k,"cal")]}<div><span>{k}</span><strong>{esc(v)}</strong></div></li>' for k, v in c['fatos'])
+    fatos = list(c['fatos']) + ([] if any(k == 'Materiais' for k, _ in c['fatos']) else [('Materiais', 'para consultar e baixar')])
+    resumo = ''.join(f'<li>{ICONS[ICON_FATOS.get(k,"cal")]}<div><span>{k}</span><strong>{esc(v)}</strong></div></li>' for k, v in fatos)
+    m_ini, m_fim = materiais(c)
+    m_quando = f'Disponível a partir de {m_ini}' + (f' e até {m_fim}' if m_fim else '') + '.' if m_ini else ''
+    mat = (f'<div class="materiais">{ICONS["book"]}<div><h3>Materiais de estudo</h3><p>Além dos encontros, cada participante recebe material complementar de leitura para consultar e baixar, '
+           f'{"junto com a obra lida no clube" if c["formato"] == "Clube do livro" else "ligado aos temas de cada " + unidade(c, 1).split()[1]}. {m_quando}</p></div></div>')
     combo_btn = combo_txt = combo_barra = ''
     cs = [COMBOS[k] for k in c.get('combos', [])]
     if len(cs) == 1:
@@ -396,7 +425,7 @@ def gerar(slug):
     if aberto:
         fechada = dict(selo=selo, insc=insc, fecho=fecho, barra=barra)
         i = c['inscricao']; (v1, q1) = i['lotes'][0]
-        lotes = '<br>'.join(f'<b>{v}</b> {q}' for v, q in i['lotes'])
+        lotes = '<br>'.join((f'{k+1}º lote: ' if len(i['lotes']) > 1 else '') + f'<b>{v}</b> {q}' for k, (v, q) in enumerate(i['lotes']))
         selo = '<span class="selo-status aberto">inscrições abertas</span>'
         insc = f'<div class="st">{ICONS["cal"]}<p class="preco"><b style="display:block;font-size:16px">Inscrições abertas</b>{lotes}<br>{esc(i["pagamento"])}</p></div><div class="botoes"><a class="btn btn-vermelho" href="{i["url"]}">Inscrever-se</a></div>'
         fecho = f'<h2>Começa em {c["modulos"][0][0]}.</h2><p>{v1} {q1}. Encontros ao vivo, com gravação e certificado de {c["horas"][0]}h.</p><div class="botoes"><a class="btn btn-creme" href="{i["url"]}">Inscrever-se</a></div>'
@@ -404,8 +433,7 @@ def gerar(slug):
         # Depois do último encontro, segue aberto (gravações + certificado) até o fim das inscrições; depois, encerrado. Tudo por data, sozinho.
         pos = (ultimo_encontro(c) + _dt.timedelta(days=1)).isoformat(); fim = fim_insc(c)
         v = i['lotes'][-1][0]; ate = fim_inscricoes(c).strftime('%d/%m'); n = len(c['modulos']); acc = acesso_ate(c)
-        enc = 'O encontro já aconteceu' if n == 1 else f'Os {n} encontros já aconteceram'
-        grav = f'{enc}: você assiste às gravações{" até " + acc if acc else ""} e recebe o certificado de {c["horas"][0]}h.'
+        grav = f'{ja_aconteceu(c)}: você assiste às gravações{" até " + acc if acc else ""} e recebe o certificado de {c["horas"][0]}h.'
         B = dict(selo=f'<span class="selo-status aberto">inscrições abertas até {ate}</span>',
                  insc=f'<div class="st">{ICONS["cal"]}<p class="preco"><b style="display:block;font-size:16px">Inscrições abertas até {ate}</b><b>{v}</b><br>{esc(grav)}<br>{esc(i["pagamento"])}</p></div><div class="botoes"><a class="btn btn-vermelho" href="{i["url"]}">Inscrever-se</a></div>',
                  fecho=f'<h2>Inscrições até {ate}.</h2><p>{v}. {esc(grav)}</p><div class="botoes"><a class="btn btn-creme" href="{i["url"]}">Inscrever-se</a></div>',
@@ -418,8 +446,8 @@ def gerar(slug):
                 ate_k = (_data(c, m.group(1)) + _dt.timedelta(days=1)).isoformat() if m and k < len(i['lotes']) - 1 else None
                 out += fase(de, ate_k, fazer(k, vk, qk), tag); de = ate_k
             return out
-        fecho = por_lote(lambda k, vk, qk: f'<h2>{"Começa em " + c["modulos"][0][0] + "." if k == 0 else "Inscrições abertas."}</h2><p>{vk} {qk}. Encontros ao vivo, com gravação e certificado de {c["horas"][0]}h.</p><div class="botoes"><a class="btn btn-creme" href="{i["url"]}">Inscrever-se</a></div>', 'div') if len(i['lotes']) > 1 else fecho
-        barra = por_lote(lambda k, vk, qk: f'<small><b>{vk}</b>{qk}</small><a class="btn btn-vermelho" tabindex="-1" href="{i["url"]}">Inscrever-se</a>', 'div') if len(i['lotes']) > 1 else barra
+        fecho = por_lote(lambda k, vk, qk: f'<h2>{"Começa em " + c["modulos"][0][0] + "." if k == 0 else "Inscrições abertas."}</h2><p>{vk} {qk}{f" (1º lote). Depois, {i['lotes'][k+1][0]}" if k + 1 < len(i['lotes']) else ""}. Encontros ao vivo, com gravação e certificado de {c["horas"][0]}h.</p><div class="botoes"><a class="btn btn-creme" href="{i["url"]}">Inscrever-se</a></div>', 'div') if len(i['lotes']) > 1 else fecho
+        barra = por_lote(lambda k, vk, qk: f'<small><b>{vk}</b>{qk}{f" · depois {i['lotes'][k+1][0]}" if k + 1 < len(i['lotes']) else ""}</small><a class="btn btn-vermelho" tabindex="-1" href="{i["url"]}">Inscrever-se</a>', 'div') if len(i['lotes']) > 1 else barra
         A = dict(selo=selo, insc=insc, fecho=fecho, barra=barra)
         def tres(k, tag):
             return fase(None, pos, A[k], tag) + fase(pos, fim, B[k], tag) + fase(fim, None, fechada[k], tag)
@@ -492,8 +520,9 @@ def gerar(slug):
 
 <section class="sec trilho">
   <div class="wrap">
-    <div class="cab"><h2>O que se estuda</h2><p>{"1 encontro. Toque para ver os temas." if len(c["modulos"])==1 else f"{len(c['modulos'])} encontros. Toque em cada um para ver os temas."}</p></div>
+    <div class="cab"><h2>O que se estuda</h2><p>{unidade(c).capitalize() + (". Toque para ver os temas." if len(c["modulos"])==1 else ". Toque em cada um para ver os temas.")}</p></div>
     <ol class="encontros">{encontros}</ol>
+    {mat}
   </div>
 </section>
 
