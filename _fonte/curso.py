@@ -93,7 +93,7 @@ body{font-size:16px}
 @media(min-width:900px){.hero .marca{right:auto;left:46%;top:58%;width:620px}}
 .hero>.wrap{padding-top:22px;padding-bottom:clamp(36px,6vw,72px);display:grid;gap:22px}
 .hero-txt{display:flex;flex-direction:column;gap:14px}
-.hero .eyebrow{color:var(--bege)}
+.hero .eyebrow{color:#E3D6BF}
 .hero h1{font-size:clamp(34px,6vw,68px);color:#fff}
 .hero h1 span{display:block;font-weight:400;font-size:.5em;line-height:1.25;margin-top:8px;color:#F2E4CB}
 .hero .chamada{font-size:clamp(16px,1.7vw,19px);color:#F2E4CB;max-width:46ch}
@@ -129,7 +129,7 @@ body{font-size:16px}
 @media(min-width:1100px){.inscricao .wrap{flex-direction:row;align-items:center;justify-content:space-between;gap:32px}.inscricao .st{max-width:46ch}.botoes{flex:none;flex-wrap:nowrap}.botoes .btn{flex:none;white-space:nowrap}}
 /* encontros */
 .trilho{background:var(--verde);color:var(--creme)}
-.trilho .cab h2{color:#fff}.trilho .cab p{color:#E6DCC6}
+.trilho .cab h2{color:#fff}.trilho .cab p{color:#fff}
 .encontros{list-style:none;margin:0;padding:0;display:grid;gap:10px;counter-reset:e}
 .materiais{margin-top:18px;display:flex;gap:16px;align-items:flex-start;background:var(--vinho);color:var(--creme);border-radius:12px;padding:20px 22px}
 .materiais>svg{width:34px;height:34px;flex:none;margin-top:2px;color:#F7A49A}
@@ -140,11 +140,11 @@ body{font-size:16px}
 .encontro summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:44px 1fr 20px;gap:12px;align-items:center;padding:16px}
 .encontro summary::-webkit-details-marker{display:none}
 .encontro .num{width:44px;height:44px;border-radius:50%;background:var(--creme);color:var(--vinho);display:grid;place-items:center;font-weight:700;font-size:17px}
-.encontro small{display:block;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--bege)}
+.encontro small{display:block;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:#fff;opacity:.92}
 .encontro h3{font-size:17px;line-height:1.28;color:#fff;margin-top:3px}
 .encontro .mais{width:20px;height:20px;background:linear-gradient(var(--creme),var(--creme)) center/100% 2px no-repeat,linear-gradient(var(--creme),var(--creme)) center/2px 100% no-repeat;transition:transform .2s}
 .encontro[open] .mais{transform:rotate(45deg)}
-.encontro ul{margin:0;padding:0 18px 18px 72px;display:flex;flex-direction:column;gap:7px;font-size:14.5px;color:#EFE6D2}
+.encontro ul{margin:0;padding:0 18px 18px 72px;display:flex;flex-direction:column;gap:7px;font-size:14.5px;color:#fff}
 @media(min-width:900px){.encontros{grid-template-columns:repeat(2,1fr);gap:14px}.encontro h3{font-size:19px}.encontro summary{padding:20px}.encontro ul{padding:0 22px 22px 78px}}
 /* em resumo: para quem, como funciona, o que recebe */
 .tres{display:grid;gap:12px}
@@ -234,7 +234,7 @@ body{font-size:16px}
 .fecho{background:var(--vermelho);color:#fff;position:relative;overflow:hidden}
 .fecho .wrap{position:relative;z-index:1;display:flex;flex-direction:column;gap:18px;align-items:stretch}
 .fecho h2{font-size:clamp(28px,4.4vw,48px);max-width:18ch}
-.fecho p{font-size:16px;color:#FFE9E4;max-width:48ch}
+.fecho p{font-size:16px;color:#fff;max-width:48ch}
 .fecho .btn-fechado{background:rgba(255,255,255,.18);color:#fff}
 .fecho .explosao{position:absolute;right:-70px;bottom:-90px;width:clamp(220px,36vw,420px);pointer-events:none}
 @media(min-width:700px){.fecho .wrap{align-items:flex-start}}
