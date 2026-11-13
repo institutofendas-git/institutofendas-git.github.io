@@ -13,7 +13,8 @@ CSS = r"""
 .ab .tx{padding:clamp(18px,2.6vw,30px);display:flex;flex-direction:column;gap:10px;min-width:0}
 .ab .selo{align-self:flex-start;background:var(--vermelho);color:#fff;font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;border-radius:999px;padding:6px 12px}
 .ab h3{font-size:clamp(22px,2.6vw,30px);line-height:1.15;color:var(--vinho)}
-.ab h3 span{display:block;font-weight:400;font-size:.62em;margin-top:4px;color:var(--escuro)}
+.ab h3 span{display:block;font-weight:500;font-size:max(15px,.66em);line-height:1.25;margin-top:6px;color:var(--vinho);opacity:.82}
+.ab .ds{padding-top:12px;position:relative}.ab .ds::before{content:"";position:absolute;top:0;left:0;width:34px;height:3px;border-radius:2px;background:var(--vermelho)}
 .ab .ds{font-size:16px;line-height:1.5;color:var(--texto)}
 .ab .dados{display:flex;flex-wrap:wrap;gap:10px 24px;border-top:1.5px solid var(--linha);padding-top:12px;margin-top:2px;font-size:14px;color:var(--verde)}
 .ab .dados b{display:block;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--vermelho);margin-bottom:2px}
@@ -80,7 +81,8 @@ def _evento(slug):
 
 
 def _cap(c):
-    return f'<span class="cap"><img src="{{{{{c["img"]}}}}}" alt="" loading="lazy" width="480" height="480"></span>'
+    foco = f' style="object-position:{c["foco"]}"' if c.get('foco') else ''
+    return f'<span class="cap"><img src="{{{{{c["img"]}}}}}" alt="" loading="lazy" width="480" height="480"{foco}></span>'
 
 
 def cartao(it, tipo):
@@ -88,7 +90,7 @@ def cartao(it, tipo):
     if tipo == 'compacto':
         return (f'<a class="ab compacto" href="{it["href"]}" data-fim="{it["fim"]}">{it["cap"]}<span class="tx"><span class="selo">{it["selo"]}</span>'
                 f'<h3>{e(it["nome"])}</h3><span class="linha">{e(it["linha"])}</span></span></a>')
-    sub = f'<span>{e(it["sub"])}</span>' if it['sub'] else ''
+    sub = f':<span>{e(it["sub"])}</span>' if it['sub'] else ''
     dados = ''.join(f'<span><b>{r}</b>{e(g if tipo == "grande" else m)}</span>' for r, g, m in it['dados'])
     return (f'<a class="ab {tipo}" href="{it["href"]}" data-fim="{it["fim"]}">{it["cap"]}<span class="tx"><span class="selo">{it["selo"]}</span>'
             f'<h3>{e(it["nome"])}{sub}</h3><span class="ds">{e(it["ds"])}</span>'

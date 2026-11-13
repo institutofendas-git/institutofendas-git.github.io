@@ -67,7 +67,7 @@ NOVOS = {
   facilitadores=['sara','bianca']),
 
  'fendas-no-cuidado': dict(CURSO,
-  nome='Fendas no Cuidado', sub='introdução ao pensamento interseccional na saúde', img='fotos/c-fendasnocuidado.webp',
+  nome='Fendas no Cuidado', sub='introdução ao pensamento interseccional na saúde', img='fotos/c-fendasnocuidado.webp', foco='40% 0%',
   chamada='Gênero, sexualidade, raça, classe, território, espiritualidade e capacidade no processo saúde-doença-cuidado.',
   chamada_longa='O curso de introdução do Instituto: o conceito, a história e os usos da interseccionalidade, aplicados à atenção primária, ao hospital e à clínica particular.',
   status='aberto', encerrado_em='10/11/2026', combos=[],

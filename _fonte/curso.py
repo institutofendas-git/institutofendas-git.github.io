@@ -425,7 +425,7 @@ def gerar(slug):
 {demo}<section class="hero">
   <img class="marca" src="{{{{of/ic-{MARCAS[slug][0]}.svg|#d62929=#A62340}}}}" style="--giro:{MARCAS[slug][1]}deg" alt="" aria-hidden="true">
   <div class="wrap">
-    <div class="capa"><img src="{{{{{c["img"]}}}}}" alt="{esc(nome)}" width="480" height="480" fetchpriority="high"></div>
+    <div class="capa"><img src="{{{{{c["img"]}}}}}" alt="{esc(nome)}" width="480" height="480" fetchpriority="high"{f' style="object-position:{c["foco"]}"' if c.get("foco") else ""}></div>
     <div class="hero-txt">
       <p class="eyebrow">{esc(c["formato"])} · Instituto Fendas</p>
       <h1>{esc(nome)}<span>{esc(sub)}</span></h1>
