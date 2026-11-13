@@ -69,13 +69,13 @@ def _evento(slug):
     if i.get('ate'):
         ate = i['ate']; v = i['lotes'][-1][0]
         return dict(href=f'/eventos/{slug}/', fim=curso.fim_insc(c), ordem=f"{ate[6:]}-{ate[3:5]}-{ate[:2]}", selo=f'até {ate[:5]}',
-                    nome=c['nome'], sub=c['sub'], ds=c['chamada'], botao='Ver o evento',
+                    nome=c['nome'], sub=c['sub'], ds=c['chamada'], botao='Quero me inscrever',
                     dados=[('Formato', f"{c['formato']} · {n} {'encontro gravado' if n == 1 else 'encontros gravados'}, online", c['formato']),
                            ('Valor', v, v), ('Certificação', cert, cert)],
                     linha=f"{c['formato']} · {v}", cap=_cap(c))
     v, _ = i['lotes'][0]; valor = f'{v} até {ini}'
     return dict(href=f'/eventos/{slug}/', fim=iso_ini, ordem=iso_ini, selo=f'Início {ini}', nome=c['nome'], sub=c['sub'], ds=c['chamada'],
-                botao='Ver o evento', dados=[('Formato', f"{c['formato']} · {n} {'encontro' if n == 1 else 'encontros'} ao vivo, online", c['formato']),
+                botao='Quero me inscrever', dados=[('Formato', f"{c['formato']} · {n} {'encontro' if n == 1 else 'encontros'} ao vivo, online", c['formato']),
                                              ('Valor', valor, valor), ('Certificação', cert, cert)],
                 linha=f"{c['formato']} · {valor}", cap=_cap(c))
 

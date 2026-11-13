@@ -300,7 +300,7 @@ def card(slug, desc=False):
     d = f'<p class="desc">{esc(c["chamada"])}</p>' if desc else ''
     return (f'<li data-formato="{c["formato_slug"]}"><a href="/eventos/{slug}/"><span class="simb"><img src="{{{{{c["img"]}}}}}" alt="" loading="lazy" decoding="async" width="480" height="480"></span>'
             f'<div class="info"><small>{esc(c["formato"].lower())} · {periodo(c)} · {situacao(c)}</small><h3><b>{esc(c["nome"])}</b>{sub}</h3>'
-            f'<p class="com">{quem(c)}</p>{d}<span class="ver">{alterna(c, "Ver o evento", "Ver como foi") if c.get("status") == "aberto" else "Ver como foi"} {SETA}</span></div></a></li>')
+            f'<p class="com">{quem(c)}</p>{d}<span class="ver">{alterna(c, "Quero me inscrever", "Ver como foi") if c.get("status") == "aberto" else "Ver como foi"} {SETA}</span></div></a></li>')
 
 def relacionados(slug, n=3):
     c = CURSOS[slug]; outros = [s for s in ORDEM if s != slug and s in CURSOS]
