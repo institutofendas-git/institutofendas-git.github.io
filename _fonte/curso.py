@@ -56,7 +56,7 @@ LOREM = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuer
 FAQ = [('Não consigo assistir ao vivo. Posso me inscrever?','Pode. Os encontros são gravados e ficam numa pasta do Google Drive por um período. Dá para assistir depois ou rever para continuar os estudos.'),
  ('É cobrada frequência?','Não. Como as aulas podem ser assistidas depois, não há controle de presença. O certificado depende do formulário de feedback, disponibilizado no encerramento.'),
  ('O acesso às gravações é para sempre?','Não. Todo evento do Instituto tem uma data de encerramento. Depois dela, as gravações e a emissão do certificado deixam de estar disponíveis.'),
- ('Os cursos são reconhecidos pelo MEC?','São cursos livres, modalidade amparada pela Lei nº 9.394/1996, pelo Decreto nº 5.154/2004 e pelos artigos 205 e 206 da Constituição, que não exige reconhecimento do MEC.')]
+ ('Os cursos são reconhecidos pelo MEC?','Não, e não precisam ser. São cursos livres, modalidade amparada pela Lei nº 9.394/1996, pelo Decreto nº 5.154/2004 e pelos artigos 205 e 206 da Constituição, que dispensa esse reconhecimento.')]
 
 ICON_UP = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15l6-6 6 6"/></svg>'
 ICON_DOWN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>'
