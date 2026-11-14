@@ -44,8 +44,9 @@ function leve(v) {
   return (ok && ok.url) || v.url;
 }
 
+// O servidor de vídeos do X recusa (403) quando o pedido diz de qual site veio.
 async function baixa(u) {
-  const r = await fetch(u);
+  const r = await fetch(u, { referrerPolicy: 'no-referrer' });
   if (!r.ok) throw new Error('HTTP ' + r.status);
   return r.blob();
 }
