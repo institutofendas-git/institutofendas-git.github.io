@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Instituto Fendas">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Instituto Fendas · Saúde, Cultura e Interseccionalidade">
+<meta property="og:description" content="Formação para complexificar o olhar de quem cuida: a história, a cultura, o gênero, a sexualidade, a raça, a classe e o território de quem chega.">
+<meta property="og:url" content="https://institutofendas.com.br/">
+<meta property="og:image" content="https://institutofendas.com.br/preview.jpg">
+<meta property="og:image:secure_url" content="https://institutofendas.com.br/preview.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Instituto Fendas · Saúde, Cultura e Interseccionalidade">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://institutofendas.com.br/">
+<title>Instituto Fendas · Cursos online em saúde, cultura e interseccionalidade</title>
+<meta name="description" content="Cursos, minicursos, capacitações, grupos de estudos e clubes do livro online, com certificado, sobre saúde, cultura e interseccionalidade: raça, gênero, sexualidade e classe no cuidado.">
+<link rel="icon" href="/assets/avatar64.c0196a42.webp">
+<meta name="theme-color" content="#750A21">
+<link rel="stylesheet" href="/assets/fontes.49f2b52e.css">
+<style>
+:root{
+  --vermelho:#D62929;--vinho:#750A21;--verde:#6B6555;--bege:#C2B299;--creme:#F9F2DE;--escuro:#271416;
+  --papel:#FDF9EF;--linha:#E6DAC2;--texto:#3B2A26;--fresta:#8E1834;
+  --rachadura-1:url(/assets/bg1.52c31e0b.svg);--rachadura-3:url(/assets/bg3.686dee48.svg);--px-verde:url(/assets/px-verde.59c1b731.svg);--px-creme:url(/assets/px-creme.c6312b40.svg);
+  --pad:clamp(20px,5vw,72px);--max:1180px;color-scheme:light
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--creme);color:var(--escuro);font-family:'Syne',system-ui,sans-serif;font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+b,strong{font-weight:600}
+a{color:inherit}
+img{display:block;max-width:100%}
+.wrap{max-width:var(--max);margin:0 auto;padding-left:max(var(--pad),env(safe-area-inset-left));padding-right:max(var(--pad),env(safe-area-inset-right))}
+h1,h2,h3{font-weight:600;letter-spacing:-.01em;line-height:1.08;margin:0;text-wrap:balance}
+p{margin:0}
+.eyebrow{font-size:13px;letter-spacing:.12em;text-transform:uppercase}
+.sec{padding:clamp(64px,9vw,112px) 0;scroll-margin-top:64px}
+.cab{display:flex;flex-direction:column;gap:12px;margin-bottom:clamp(32px,5vw,52px);max-width:720px}
+.cab h2{font-size:clamp(34px,5vw,56px);color:var(--vinho)}
+.cab p{font-size:18px;color:var(--verde);max-width:40ch;text-wrap:pretty}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font:600 16px/1 'Syne',sans-serif;text-decoration:none;border-radius:999px;padding:17px 28px;min-height:52px;transition:transform .15s,background .15s,color .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn-vermelho{background:var(--vermelho);color:#fff}.btn-vermelho:hover{background:#B91F1F}
+.btn-creme{background:var(--creme);color:var(--vinho)}
+.btn-zap{background:transparent;color:inherit;border:1.5px solid currentColor}
+.btn-zap svg,.btn-zap-cheio svg{width:18px;height:18px;flex:none}
+.btn-zap-cheio{display:inline-flex;align-items:center;gap:10px;align-self:flex-start}
+.card-aberto .acoes{display:flex;flex-wrap:wrap;gap:10px}
+.btn-zap{display:inline-flex;align-items:center;gap:10px}
+.btn-linha{border:1.5px solid currentColor;color:var(--creme);padding:10px 18px;min-height:0;font-size:14px}
+.btn-linha:hover{background:var(--creme);color:var(--vinho)}
+.btn:focus-visible,a:focus-visible{outline:3px solid var(--vermelho);outline-offset:3px}
+
+/* aviso de rascunho */
+.rascunho{background:#FFF3C4;color:#5B4300;font-size:13px;text-align:center;padding:8px 16px}
+
+/* topo */
+.topo{position:sticky;top:0;z-index:20;background:var(--vinho);color:var(--creme);padding-top:env(safe-area-inset-top)}
+.topo .wrap{display:flex;align-items:center;gap:22px;height:64px}
+.topo .logo img{height:24px;width:auto}
+.topo nav{display:none;gap:22px;margin-left:auto;font-size:14px}
+.topo nav a{text-decoration:none;opacity:.85}.topo nav a:hover{opacity:1}
+.topo .btn{margin-left:auto}
+@media(min-width:860px){.topo nav{display:flex}.topo .btn{margin-left:0}}
+
+/* abertura */
+.hero{color:var(--creme);background:var(--rachadura-1) center/cover no-repeat,var(--fresta)}
+.hero .wrap{padding-top:clamp(64px,10vw,120px);padding-bottom:clamp(64px,10vw,120px);display:flex;flex-direction:column;gap:24px}
+.hero .eyebrow{color:var(--bege)}
+.hero h1{font-size:clamp(42px,7.4vw,88px);color:#fff;max-width:13ch}
+.hero p{font-size:clamp(17px,1.8vw,20px);max-width:46ch;color:#F2E4CB}
+.acoes{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+
+/* aberto agora */
+.aberto{background:#F2EAD6}
+.card-aberto{display:grid;background:var(--papel);border-radius:6px;overflow:hidden;box-shadow:0 22px 40px -30px rgba(39,20,22,.55)}
+.capas{display:grid;grid-template-columns:repeat(5,1fr);min-height:220px}
+.capas div{background-size:cover;background-position:center}
+.card-aberto .corpo{padding:clamp(24px,3.6vw,44px);display:flex;flex-direction:column;gap:18px}
+.selo{align-self:flex-start;background:var(--vermelho);color:#fff;font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;border-radius:999px;padding:6px 12px}
+.card-aberto h3{font-size:clamp(28px,3.6vw,42px);color:var(--vinho)}
+.card-aberto p{font-size:17px;color:var(--texto)}
+.fatos{display:flex;flex-wrap:wrap;gap:8px 22px;font-size:14px;color:var(--verde)}
+.fatos b{color:var(--escuro)}
+.card-aberto .acoes .btn-zap{color:var(--vinho)}
+@media(min-width:900px){.card-aberto{grid-template-columns:5fr 7fr}.capas{min-height:100%}}
+
+/* o que fazemos */
+.tres{display:grid;gap:16px}
+.tres article{background:var(--papel);border-radius:6px;padding:28px;display:flex;flex-direction:column;gap:12px;border-top:4px solid var(--vermelho)}
+.tres img{height:40px;width:auto;align-self:flex-start;margin-bottom:6px}
+.tres h3{font-size:24px;color:var(--vinho)}
+.tres p{font-size:16px;color:var(--texto)}
+@media(min-width:860px){.tres{grid-template-columns:repeat(3,1fr)}}
+.nome-fenda{margin-top:clamp(40px,6vw,64px);display:grid;gap:20px;align-items:center;background:var(--vinho);color:var(--creme);border-radius:6px;padding:clamp(26px,4vw,44px);position:relative;overflow:hidden}
+.nome-fenda::after{content:"";position:absolute;inset:0;background:var(--rachadura-3) center/cover no-repeat;opacity:.35;pointer-events:none}
+.nome-fenda>*{position:relative;z-index:1}
+.nome-fenda h3{font-size:clamp(24px,3vw,34px);color:#fff}
+.nome-fenda p{font-size:17px;color:#F2E4CB;max-width:60ch}
+@media(min-width:860px){.nome-fenda{grid-template-columns:.8fr 1.2fr}}
+
+/* formatos */
+.formatos{background:var(--verde);color:var(--creme);position:relative;overflow:hidden}
+.formatos::before{content:"";position:absolute;left:-18%;top:-2vw;width:max(190vw,1900px);aspect-ratio:1770/198;background:var(--px-verde) center/contain no-repeat;pointer-events:none}
+.formatos .wrap{position:relative}
+@media(max-width:899px){.formatos::before{width:290vw;left:-21.3vw;top:10px}.formatos .cab{padding-top:calc(32.4vw + 56px)}}
+.formatos .cab{padding-top:max(220px,calc(21.3vw + 8px))}
+.formatos .cab h2{color:#fff}.formatos .cab p{color:#E6DCC6}
+.lista-formatos{display:grid;gap:12px}
+.fcard{display:grid;grid-template-columns:52px 1fr;gap:14px 16px;background:var(--papel);color:var(--escuro);border-radius:8px;padding:18px 18px 0;text-decoration:none;box-shadow:0 20px 36px -26px rgba(0,0,0,.6);transition:transform .15s,box-shadow .15s}
+.fcard:hover{transform:translateY(-3px);box-shadow:0 26px 40px -24px rgba(0,0,0,.7)}
+.fic{width:52px;height:52px;border-radius:8px;background:var(--vinho);display:grid;place-items:center}
+.fic img{width:34px;height:34px;object-fit:contain}
+.ftxt{display:flex;flex-direction:column;gap:5px}
+.fcard h3{font-size:21px;color:var(--vinho);line-height:1.2}
+.fcard p{font-size:15px;line-height:1.45;color:var(--texto)}
+.fmeta{font-size:13px;color:var(--verde)}.fmeta b{color:var(--vinho)}
+.fver{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:12px;border-top:1.5px solid var(--linha);margin:0 -18px;padding:12px 18px;font-size:15px;font-weight:600;color:var(--vermelho)}
+.fver i{width:34px;height:34px;border-radius:50%;background:var(--vermelho);color:#fff;display:grid;place-items:center;flex:none;transition:transform .15s}
+.fver svg{width:18px;height:18px}
+.fcard:hover .fver i{transform:translateX(3px)}
+@media(min-width:700px) and (max-width:1099px){.lista-formatos{grid-template-columns:repeat(2,1fr);gap:14px}.fcard:last-child{grid-column:1/-1}}
+@media(min-width:1100px){.lista-formatos{grid-template-columns:repeat(5,1fr)}.fcard{grid-template-columns:1fr;grid-template-rows:auto 1fr auto}.fcard h3{font-size:20px}.fcard{padding:16px 14px 0;gap:12px}.fver{margin:0 -14px;padding:12px 14px;font-size:13.5px;white-space:nowrap;gap:8px}.fver i{width:30px;height:30px}}
+.nota-formatos{margin-top:22px;font-size:14px;color:#E6DCC6}
+
+/* formações de 2026 */
+.formacoes ul{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.formacoes li{background:var(--papel);border-radius:6px;overflow:hidden;display:grid;grid-template-columns:104px 1fr;box-shadow:0 18px 34px -30px rgba(39,20,22,.5)}
+.simb{background-size:cover;background-position:center;min-height:104px}
+.info{padding:16px 18px 18px;display:flex;flex-direction:column;gap:6px}
+.info small{font-size:12px;color:var(--vermelho);font-weight:600;letter-spacing:.02em}
+.info h3{font-size:18px;line-height:1.28;font-weight:400;color:var(--escuro)}
+.info h3 b{color:var(--vinho)}
+.formacoes li{position:relative;transition:transform .18s,box-shadow .18s}.formacoes li:hover{transform:translateY(-4px);box-shadow:0 28px 40px -24px rgba(39,20,22,.55)}.info .ver{align-self:flex-start;margin-top:8px;display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--vermelho);text-decoration:none;border:1.5px solid var(--vermelho);border-radius:999px;padding:8px 14px;line-height:1;transition:background .18s,color .18s}.info .ver::after{content:"";position:absolute;inset:0}.formacoes li:hover .ver,.info .ver:focus-visible{background:var(--vermelho);color:#fff}
+.info .com{font-size:13px;color:var(--verde)}
+.info p{font-size:14.5px;color:var(--texto)}
+@media(min-width:700px){.formacoes li{grid-template-columns:160px 1fr}.simb{min-height:160px}}
+@media(min-width:1050px){.formacoes ul{grid-template-columns:repeat(2,1fr)}}
+.chamada{margin-top:28px;background:var(--vermelho);color:#fff;border-radius:6px;padding:clamp(24px,3.4vw,36px);display:flex;flex-wrap:wrap;gap:20px 32px;align-items:center;justify-content:space-between;position:relative;overflow:hidden}
+.chamada::after{content:"";position:absolute;right:-40px;top:-50px;width:220px;aspect-ratio:1;background:url(/assets/ic-explosaao.ca7b6e20.svg) center/contain no-repeat;pointer-events:none}
+.chamada>*{position:relative;z-index:1}
+.chamada .eyebrow{font-size:12px;color:#fff;margin-bottom:6px}
+.chamada h3{font-size:clamp(24px,3vw,32px)}
+.chamada p{font-size:16px;color:#fff;max-width:46ch}
+
+/* quem somos */
+.qs-foto{margin-bottom:22px;border-radius:6px;overflow:hidden;background:url(/assets/equipe.f1ead73b.webp) center 38%/cover no-repeat;aspect-ratio:4/3}
+@media(min-width:900px){.qs-foto{aspect-ratio:3/2;background-position:center 34%}}
+.pessoas{display:grid;gap:18px}
+.pessoa{display:flex;flex-direction:column;background:var(--papel);border-radius:6px;overflow:hidden}
+.foto{aspect-ratio:4/5;background-size:cover;background-position:center top}
+.pessoa .txt{padding:18px 20px 22px;display:flex;flex-direction:column;gap:8px}
+.pessoa h3{font-size:22px;color:var(--vinho)}
+.pessoa p{font-size:14.5px;color:var(--texto)}
+.pessoa small{font-size:12px;color:var(--verde)}
+@media(min-width:600px){.pessoas{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1050px){.pessoas{grid-template-columns:repeat(4,1fr)}}
+
+/* contato */
+.contato{background:var(--vermelho);color:#fff;position:relative;overflow:hidden}
+.contato .explosao{position:absolute;right:-70px;bottom:-90px;width:clamp(240px,36vw,440px);pointer-events:none}
+.contato .wrap{position:relative;z-index:1;display:flex;flex-direction:column;gap:22px;align-items:flex-start}
+.contato h2{font-size:clamp(34px,5vw,60px);max-width:16ch}
+.contato p{font-size:18px;color:#fff;max-width:46ch}
+.canais{display:flex;flex-direction:column;gap:6px;font-size:17px}
+.canais a{color:#fff}
+footer{background:var(--escuro);color:var(--creme);padding:36px 0 calc(36px + env(safe-area-inset-bottom))}
+footer .wrap{display:flex;flex-wrap:wrap;gap:16px 32px;align-items:center;justify-content:space-between;font-size:14px}
+footer img{height:24px;width:auto}
+/* botão flutuante subir/descer */
+.setas{position:fixed;right:max(16px,env(safe-area-inset-right));bottom:calc(16px + env(safe-area-inset-bottom));z-index:40;display:flex;flex-direction:column;border-radius:999px;background:var(--escuro);box-shadow:0 10px 26px -10px rgba(39,20,22,.6);opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .2s,transform .2s}
+.setas.on{opacity:1;transform:none;pointer-events:auto}
+.setas a{width:48px;height:46px;display:grid;place-items:center;color:var(--creme);text-decoration:none}
+.setas a+a{border-top:1px solid rgba(249,242,222,.18)}
+.setas a:hover{background:var(--vinho)}
+.setas svg{width:20px;height:20px}
+.setas a{position:relative}
+.setas a:first-child{border-radius:999px 999px 0 0}
+.setas a:last-child{border-radius:0 0 999px 999px}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn,.setas{transition:none}}
+/* depoimentos */
+.depo{background:#F2EAD6}
+.depo .topo-dep{display:flex;justify-content:space-between;align-items:flex-end;gap:16px}
+.exemplo{align-self:flex-start;display:inline-block;background:#FFF3C4;color:#5B4300;font-size:12px;font-weight:600;border-radius:999px;padding:5px 11px}
+.setas-car{display:none;gap:8px}
+.setas-car button{width:46px;height:46px;border-radius:50%;border:1.5px solid var(--vinho);background:transparent;color:var(--vinho);display:grid;place-items:center;cursor:pointer}
+.setas-car button:hover{background:var(--vinho);color:var(--creme)}
+.setas-car svg{width:20px;height:20px}
+.depos{display:grid;grid-auto-flow:column;grid-auto-columns:86%;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding-bottom:6px;margin:0 calc(-1*var(--pad));padding-left:var(--pad);padding-right:var(--pad);scroll-padding:0 var(--pad);scrollbar-width:none}
+.depos::-webkit-scrollbar{display:none}
+.depos figure{scroll-snap-align:start;margin:0;background:var(--papel);border-radius:6px;padding:22px;display:flex;flex-direction:column;justify-content:space-between;gap:18px;border-top:4px solid var(--vermelho)}
+.depos blockquote{margin:0;font-size:15px;line-height:1.6;color:var(--texto)}
+.depos blockquote::before{content:"“";display:block;font-size:44px;line-height:.6;color:var(--vermelho);margin-bottom:6px}
+.depos figcaption{display:flex;gap:12px;align-items:center}
+.avatar{width:52px;height:52px;flex:none;border-radius:50%;background:var(--bege) center/cover no-repeat;display:grid;place-items:center;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--escuro)}
+.depos figcaption b{display:block;color:var(--vinho);font-size:15px}
+.depos figcaption span{display:block;font-size:12.5px;line-height:1.35;color:var(--verde);margin-top:2px}
+.pontos{display:flex;justify-content:center;gap:8px;margin-top:16px}
+.pontos i{width:8px;height:8px;border-radius:50%;background:var(--linha);transition:background .2s,width .2s}
+.pontos i.on{background:var(--vermelho);width:22px;border-radius:999px}
+@media(min-width:700px){.depos{grid-auto-columns:calc((100% - 2*var(--pad) - 14px)/2)}}
+@media(min-width:1000px){.depos{grid-auto-columns:calc((100% - 2*var(--pad) - 28px)/3)}.setas-car{display:flex}}
+@media(min-width:1180px){.depos{grid-auto-columns:calc((1180px - 2*var(--pad) - 28px)/3);margin:0 calc((1180px - 100vw)/2 - var(--pad));padding-left:calc((100vw - 1180px)/2 + var(--pad));padding-right:calc((100vw - 1180px)/2 + var(--pad));scroll-padding:0 calc((100vw - 1180px)/2 + var(--pad))}}
+.depo{background:var(--vinho)}.depo .cab h2{color:#fff}.depo .cab p{color:#E6DCC6}.depo .setas-car button{border-color:var(--creme);color:var(--creme)}.depo .setas-car button:hover{background:var(--creme);color:var(--vinho)}.depo .pontos i{background:rgba(249,242,222,.3)}.depo .pontos i.on{background:var(--vermelho)}
+.cards{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.cards li{display:flex}.cards a{flex:1;display:grid;grid-template-columns:104px 1fr;background:var(--papel);border-radius:6px;overflow:hidden;text-decoration:none;color:inherit;box-shadow:0 18px 34px -30px rgba(39,20,22,.5);transition:transform .18s,box-shadow .18s}
+.cards a:hover{transform:translateY(-4px);box-shadow:0 28px 40px -24px rgba(39,20,22,.55)}
+.cards .simb{position:relative;min-height:130px;background:var(--linha)}.cards .simb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cards small b{color:var(--vermelho)}
+.cards .info{padding:16px 18px;display:flex;flex-direction:column;gap:6px}
+.cards small{font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--verde)}
+.cards h3{font-size:18px;line-height:1.25;color:var(--vinho);font-weight:400}
+.cards h3 b{font-weight:700}
+.cards .com{font-size:13px;color:var(--verde)}
+.cards .ver{margin-top:auto;align-self:flex-start;display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--vermelho);border:1.5px solid var(--vermelho);border-radius:999px;padding:8px 14px;line-height:1;transition:background .18s,color .18s}
+.cards a:hover .ver,.cards a:focus-visible .ver{background:var(--vermelho);color:#fff}
+@media(min-width:700px){.cards a{grid-template-columns:170px 1fr}.cards .simb{min-height:170px}}
+@media(min-width:1050px){.cards{grid-template-columns:repeat(2,1fr)}}
+
+.cards .desc{font-size:14.5px;line-height:1.5;color:var(--texto)}
+@media(max-width:699px){.cards .desc{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}}
+.cards li[hidden]{display:none}
+.chips{display:flex;gap:8px;overflow-x:auto;margin:0 calc(-1*var(--pad)) 20px;padding:2px var(--pad) 6px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;font:600 14px/1 'Syne',sans-serif;padding:11px 16px;border-radius:999px;border:1.5px solid var(--vinho);background:transparent;color:var(--vinho);cursor:pointer;transition:background .15s,color .15s}
+.chip:hover{background:#F2EAD6}.chip.on{background:var(--vinho);color:var(--creme)}
+@media(min-width:900px){.chips{flex-wrap:wrap;overflow:visible;margin:0 0 26px;padding:0}}
+.pessoa .foto{position:relative;background:var(--linha)}.pessoa .foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top}
+
+.abertos{display:grid;gap:14px}
+.ab{position:relative;display:grid;background:var(--papel);border-radius:8px;overflow:hidden;box-shadow:0 22px 40px -30px rgba(39,20,22,.55);text-decoration:none;color:inherit;transition:transform .18s,box-shadow .18s}
+.ab:hover{transform:translateY(-3px);box-shadow:0 28px 44px -26px rgba(39,20,22,.6)}
+.ab .cap{position:relative;background:var(--vinho);min-height:190px}
+.ab .cap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ab .tx{padding:clamp(18px,2.6vw,30px);display:flex;flex-direction:column;gap:10px;min-width:0}
+.ab .selo{align-self:flex-start;background:var(--vermelho);color:#fff;font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;border-radius:999px;padding:6px 12px}
+.ab h3{font-size:clamp(22px,2.6vw,30px);line-height:1.15;color:var(--vinho)}
+.ab h3 .sub>span{display:block;font-weight:500;font-size:max(15px,.66em);line-height:1.25;margin-top:6px;color:var(--vinho);opacity:.82}
+.ab .ds{padding-top:12px;position:relative}.ab .ds::before{content:"";position:absolute;top:0;left:0;width:34px;height:3px;border-radius:2px;background:var(--vermelho)}
+.ab .ds{font-size:16px;line-height:1.5;color:var(--texto)}
+.ab .dados{display:flex;flex-wrap:wrap;gap:10px 24px;border-top:1.5px solid var(--linha);padding-top:12px;margin-top:2px;font-size:14px;color:var(--verde)}
+.ab .dados b{display:block;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--vermelho);margin-bottom:2px}
+.ab .dados span{color:var(--escuro)}
+.ab .ir{align-self:flex-start;margin-top:4px;display:inline-flex;align-items:center;gap:8px;background:var(--vermelho);color:#fff;font-weight:600;font-size:15px;border-radius:999px;padding:11px 18px}
+.ab:hover .ir{background:#B91F1F}
+.ab.compacto{grid-template-columns:96px 1fr}
+.ab.compacto .cap{min-height:96px}
+.ab.compacto .tx{padding:14px 16px;gap:6px}
+.ab.compacto .selo{font-size:10.5px;padding:4px 9px}
+.ab.compacto h3{font-size:18px}.ab.compacto h3 .sub{display:none}
+.ab.compacto .ds,.ab.compacto .dados,.ab.compacto .ir{display:none}.ab:not(.compacto) .linha{display:none}
+.ab.grande .dm,.ab.medio .dg{display:none}
+.ab.compacto .linha{font-size:13.5px;color:var(--verde)}
+.ab.medio .cap{min-height:170px}
+.ab.medio h3{font-size:clamp(20px,2.2vw,26px)}
+.ab[hidden]{display:none!important}
+.ab .capas-c{display:grid;grid-template-columns:repeat(5,1fr)}.ab .capas-c span{background-size:cover;background-position:center}.ab .capas-c span:first-child{background-position:center bottom}
+.abertos .resto{display:grid;gap:12px;align-content:start}
+@media(min-width:700px){.abertos.n2{grid-template-columns:1fr 1fr}}
+@media(min-width:900px){.abertos.n1 .ab{grid-template-columns:5fr 7fr}.abertos.n1 .cap{min-height:100%}
+ .abertos.n3{grid-template-columns:1.35fr 1fr;align-items:stretch}.abertos.n3 .resto{grid-auto-rows:1fr;align-content:stretch}
+ .abertos.n3 .ab.compacto{grid-template-columns:1fr;grid-template-rows:1fr auto}.abertos.n3 .ab.compacto .cap{min-height:140px}.abertos.n3 .ab.compacto .tx{padding:16px 20px}}
+
+/* ---------- menu ---------- */
+[hidden]{display:none!important}
+.topo .mwrap{display:flex;align-items:center;gap:14px;height:64px}
+.topo .mwrap .logo{margin-right:auto;display:flex}
+.topo nav.nav-desk{display:none}
+.mbtn{display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;border:1.5px solid rgba(249,242,222,.55);color:var(--creme);text-decoration:none;font-weight:600;font-size:13.5px;border-radius:999px;padding:9px 16px;line-height:1}
+.mbtn:hover{background:var(--creme);color:var(--vinho)}
+.burger{width:44px;height:44px;flex:none;display:grid;place-items:center;background:transparent;border:0;color:var(--creme);cursor:pointer;padding:0;margin-right:-8px}
+.burger svg{width:26px;height:26px}
+.burger .x{display:none}.burger[aria-expanded="true"] .x{display:block}.burger[aria-expanded="true"] .tres{display:none}
+.topo nav.menu-painel{display:block;margin:0;font-size:inherit;border-top:1px solid rgba(249,242,222,.14);height:calc(100vh - 64px - env(safe-area-inset-top));height:calc(100dvh - 64px - env(safe-area-inset-top));overflow:auto;overscroll-behavior:contain}
+.topo nav.menu-painel[hidden]{display:none}
+.topo .menu-painel .wrap{display:block;height:auto}
+.menu-painel ul{list-style:none;margin:0;padding:0}
+.menu-painel>.wrap>ul{padding:6px 0 18px}
+.menu-painel li{border-bottom:1px solid rgba(249,242,222,.1)}
+.menu-painel li:last-child{border-bottom:0}
+.menu-painel a,.menu-painel .sub-btn{display:flex;align-items:center;gap:10px;width:100%;min-height:54px;padding:12px 0;color:var(--creme);text-decoration:none;font:inherit;font-size:18px;font-weight:600;background:none;border:0;text-align:left;cursor:pointer}
+.menu-painel a:hover,.menu-painel .sub-btn:hover{color:#fff}
+.menu-painel .on>a,.menu-painel a.on,.menu-painel .sub-btn.on{color:#FF8A80}
+.menu-painel .caret{width:18px;height:18px;transition:transform .2s;color:var(--vermelho)}
+.menu-painel .sub-btn[aria-expanded="true"] .caret{transform:rotate(180deg)}
+.menu-painel .sub{padding:0 0 10px 18px;border-left:2px solid var(--vermelho);margin-left:2px}
+.menu-painel .sub[hidden]{display:none}
+.menu-painel .sub li{border:0}
+.menu-painel .sub a{font-size:16px;font-weight:400;min-height:44px;padding:8px 0;color:#E9DCC2}
+.menu-painel .sub a.on{color:#fff;font-weight:600}
+.menu-painel .sub a.on::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--vermelho);margin-left:-22px;margin-right:10px}
+.menu-painel .tag{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;background:var(--vermelho);color:#fff;border-radius:999px;padding:4px 8px;font-weight:600}
+body.menu-aberto{overflow:hidden}
+@media(max-width:380px){.mbtn{padding:8px 12px;font-size:12.5px}.topo .mwrap{gap:8px}}
+@media(min-width:1000px){
+ .burger,.topo nav.menu-painel{display:none!important}
+ .topo nav.nav-desk{display:flex;align-items:center;gap:4px;margin:0 8px 0 0;font-size:14.5px}
+ .nav-desk>a,.nav-desk summary{color:var(--creme);text-decoration:none;opacity:.85;padding:10px 12px;border-radius:6px;cursor:pointer;display:flex;align-items:center;gap:6px;list-style:none}
+ .nav-desk summary::-webkit-details-marker{display:none}
+ .topo .nav-desk details{border:0!important}
+ .topo .nav-desk summary{font-size:inherit;font-weight:400;line-height:1.2;justify-content:flex-start;gap:6px}
+ .topo .nav-desk summary::after{content:none!important;display:none!important}
+ .topo .nav-desk .drop a{font-weight:400}.topo .nav-desk .drop a.on{font-weight:600}
+ .nav-desk>a:hover,.nav-desk summary:hover,.nav-desk details[open] summary{opacity:1;background:rgba(249,242,222,.08)}
+ .nav-desk .on,.nav-desk details.on summary{opacity:1;color:#fff;box-shadow:inset 0 -2px 0 var(--vermelho)}
+ .nav-desk .caret{width:15px;height:15px;transition:transform .2s}
+ .nav-desk details[open] .caret{transform:rotate(180deg)}
+ .nav-desk details{position:relative}
+ .nav-desk .drop{position:absolute;top:calc(100% + 8px);left:0;min-width:230px;background:var(--papel);border-radius:8px;padding:8px;box-shadow:0 24px 44px -18px rgba(39,20,22,.45);display:flex;flex-direction:column}
+ .nav-desk .drop a{color:var(--escuro);text-decoration:none;padding:10px 12px;border-radius:6px;font-size:15px}
+ .nav-desk .drop a:hover{background:#F2EAD6;color:var(--vinho)}
+ .nav-desk .drop a.on{color:var(--vinho);font-weight:600;background:#F2EAD6}
+}
+
+/* ---------- geral: acessibilidade e movimento ---------- */
+.pular{position:absolute;left:12px;top:-60px;z-index:100;background:var(--creme);color:var(--vinho);padding:10px 14px;border-radius:6px;font-weight:600;text-decoration:none}
+.pular:focus{top:12px}
+:focus-visible{outline:3px solid var(--vermelho);outline-offset:3px}
+.topo :focus-visible,.hero :focus-visible,.fecho :focus-visible,footer :focus-visible{outline-color:var(--creme)}
+
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}@view-transition{navigation:none}}
+.fase{display:contents}.fase[hidden]{display:none}</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "EducationalOrganization", "name": "Instituto Fendas", "alternateName": "Instituto Fendas de Saúde, Cultura e Interseccionalidade", "url": "https://institutofendas.com.br/", "logo": "https://institutofendas.com.br/preview.jpg", "email": "institutofendas@gmail.com", "sameAs": ["https://instagram.com/institutofendas"], "address": {"@type": "PostalAddress", "addressLocality": "Fortaleza", "addressRegion": "CE", "addressCountry": "BR"}}</script>
+</head>
+<body>
+<a class="pular" href="#inicio">Pular para o conteúdo</a>
+
+
+<header class="topo">
+  <div class="wrap mwrap">
+    <a class="logo" href="/"><img src="/assets/wm-branco-verm.9414302b.svg" alt="Instituto Fendas" width="1830" height="331"></a>
+    <nav class="nav-desk" aria-label="Menu">
+      <a href="/" class="on">Início</a>
+      <a href="/#quem-somos">Quem somos</a>
+      <details><summary>Formatos<svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary><div class="drop"><a href="/formatos/clubes-do-livro/">Clubes do livro</a><a href="/formatos/minicursos/">Minicursos</a><a href="/formatos/capacitacoes/">Capacitações</a><a href="/formatos/grupos-de-estudos/">Grupos de estudos</a><a href="/formatos/cursos/">Cursos</a></div></details>
+      <a href="/#eventos">Eventos de 2026</a>
+      <a href="/#contato">Contato</a>
+    </nav>
+    <a class="mbtn so-campanha aberto-agora" href="/#aberto">Aberto agora</a>
+    <button class="burger" type="button" aria-expanded="false" aria-controls="menu-painel" aria-label="Abrir o menu"><svg class="tres" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg class="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  </div>
+  <nav class="menu-painel" id="menu-painel" aria-label="Menu" hidden>
+    <div class="wrap"><ul>
+      <li><a href="/" class="on">Início</a></li>
+      <li><a href="/#quem-somos">Quem somos</a></li>
+      <li><button class="sub-btn" type="button" aria-expanded="false" aria-controls="menu-sub">Formatos<svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
+        <ul class="sub" id="menu-sub" hidden><li><a href="/formatos/clubes-do-livro/">Clubes do livro</a></li><li><a href="/formatos/minicursos/">Minicursos</a></li><li><a href="/formatos/capacitacoes/">Capacitações</a></li><li><a href="/formatos/grupos-de-estudos/">Grupos de estudos</a></li><li><a href="/formatos/cursos/">Cursos</a></li></ul></li>
+      <li><a href="/#eventos">Eventos de 2026</a></li>
+      <li class="so-campanha"><a href="/final-de-ano/">Final de ano no Fendas <span class="tag">aberto</span></a></li>
+      <li><a href="/#contato">Contato</a></li>
+    </ul></div>
+  </nav>
+</header>
+
+<main id="inicio">
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Instituto Fendas · saúde, cultura e interseccionalidade</p>
+    <h1>É na fenda que o cuidado ganha profundidade.</h1>
+    <p>Formação para quem busca enxergar o que costuma ficar de fora de uma formação centrada só em técnicas e protocolos: a história, a cultura, o gênero, a sexualidade, a raça, a classe e o território de quem chega.</p>
+    <div class="acoes"><a class="btn btn-vermelho" href="#aberto">Ver o que está aberto</a></div><div class="acoes pos-campanha" hidden><a class="btn btn-vermelho" href="#eventos">Ver os eventos de 2026</a></div>
+  </div>
+</section>
+
+<section class="sec aberto" id="aberto">
+  <div class="wrap">
+    <div class="cab"><p class="eyebrow" style="color:#BF2222;font-weight:600">aberto agora</p><h2>Inscrições abertas</h2></div>
+    <!-- BLOCO QUE MUDA A CADA LANÇAMENTO -->
+    <div class="abertos n2"><a class="ab medio" href="/eventos/fendas-no-cuidado/" data-de="2026-10-20" data-fim="2026-11-18" data-ordem="2026-11-17"><span class="cap"><img src="/assets/c-fendasnocuidado.b236fb68.webp" alt="" loading="lazy" width="480" height="480" style="object-position:40% 0%"></span><span class="tx"><span class="selo">até 17/11</span><h3>Fendas no Cuidado<span class="sub">:<span>introdução ao pensamento interseccional na saúde</span></span></h3><span class="ds">Gênero, sexualidade, raça, classe, território, espiritualidade e capacidade no processo saúde-doença-cuidado.</span><span class="dados dg"><span><b>Formato</b>Curso · 4 módulos, online</span><span><b>Valor</b>R$ 89,90</span><span><b>Certificação</b>20h</span></span><span class="dados dm"><span><b>Formato</b>Curso</span><span><b>Valor</b>R$ 89,90</span><span><b>Certificação</b>20h</span></span><span class="linha">Curso · R$ 89,90</span><span class="ir">Quero me inscrever <span aria-hidden="true">→</span></span></span></a><a class="ab medio" href="/final-de-ano/" data-fim="2026-12-12" data-ordem="2026-12-11"><span class="cap capas-c" aria-hidden="true"><span style="background-image:url(/assets/raciais.a0d050e8.webp)"></span><span style="background-image:url(/assets/genero.75c2d5db.webp)"></span><span style="background-image:url(/assets/sexualidade.f7335bcb.webp)"></span><span style="background-image:url(/assets/intersec.37b78e10.webp)"></span><span style="background-image:url(/assets/raciais-genero.08cf0bc0.webp)"></span></span><span class="tx"><span class="selo">até 11/12</span><h3>Final de ano no Fendas</h3><span class="ds">As gravações de sete eventos realizados em 2026, reunidas em cinco combos: relações raciais, gênero, sexualidade, interseccionalidade e política.</span><span class="dados dg"><span><b>Formato</b>aulas gravadas + materiais</span><span><b>Desconto</b>25%</span><span><b>Acesso</b>até 31/01/2027</span></span><span class="dados dm"><span><b>Formato</b>aulas gravadas + materiais</span><span><b>Desconto</b>25%</span><span><b>Acesso</b>até 31/01/2027</span></span><span class="linha">5 combos · 25% de desconto</span><span class="ir">Conhecer os combos <span aria-hidden="true">→</span></span></span></a></div>
+  </div>
+</section>
+
+<section class="sec aberto pos-campanha" hidden>
+  <div class="wrap">
+    <div class="cab"><p class="eyebrow" style="color:var(--vermelho);font-weight:600">em breve</p><h2>Os próximos eventos</h2><p>As novas turmas são anunciadas primeiro no Instagram do Instituto.</p></div>
+    <a class="btn btn-vermelho" href="https://instagram.com/institutofendas">Acompanhar no Instagram</a>
+  </div>
+</section>
+
+<section class="sec" id="o-que-fazemos">
+  <div class="wrap">
+    <div class="cab"><h2>O que a gente faz</h2><p>Formação para estudantes e profissionais da saúde, pensada a partir da sociedade brasileira e por lentes interseccionais.</p></div>
+    <div class="tres">
+      <article><img src="/assets/ic-olho.809ebda8.svg" alt=""><h3>Complexificar o olhar</h3><p>Reconhecer dimensões da vida que passam despercebidas quando o cuidado se torna automático.</p></article>
+      <article><img src="/assets/ic-camadas.ddd098d5.svg" alt=""><h3>Aprofundar o estudo</h3><p>Ir além da apresentação superficial de um tema, com atenção à história, à cultura e ao contexto de quem chega.</p></article>
+      <article><img src="/assets/ic-caminhos.524d8f71.svg" alt=""><h3>Aproximar estudo e prática</h3><p>Sair com outras perguntas e recursos para investigar, discutir e agir numa situação concreta. Sem receita pronta.</p></article>
+    </div>
+    <div class="nome-fenda">
+      <h3>Por que fendas?</h3>
+      <p>A fenda é a lacuna: aquilo que costuma parecer detalhe, mas ajuda a compreender a experiência de quem recebe cuidado. Estudar pelas fendas é olhar para o que a formação centrada só em técnicas deixa de fora, em companhia, com espaço para pergunta e discordância.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec formatos" id="formatos">
+  <div class="wrap">
+    <div class="cab"><h2>Os formatos</h2><p>No Instituto, os encontros ao vivo acontecem em formatos diferentes. Cada um tem a sua quantidade de horas ao vivo e de estudo, que juntas formam a carga do certificado. Toque num formato para ver os eventos de 2026.</p></div>
+    <div class="lista-formatos">
+      <a class="fcard" href="/formatos/clubes-do-livro/"><span class="fic"><img src="/assets/ic-camadas.ddd098d5.svg" alt=""></span><span class="ftxt"><h3>Clubes do livro</h3><p>A leitura de um livro, discutida em grupo ao longo de quatro encontros.</p><span class="fmeta"><b>15h</b> de certificado · 4 encontros de 1h</span></span><span class="fver">Ver os eventos<i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></span></a>
+      <a class="fcard" href="/formatos/minicursos/"><span class="fic"><img src="/assets/ic-explosaao.770f370e.svg" alt=""></span><span class="ftxt"><h3>Minicursos</h3><p>Um tema concentrado num único encontro, com material para continuar depois.</p><span class="fmeta"><b>10h</b> de certificado · 1 encontro de 4h</span></span><span class="fver">Ver os eventos<i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></span></a>
+      <a class="fcard" href="/formatos/capacitacoes/"><span class="fic"><img src="/assets/ic-caminhos.524d8f71.svg" alt=""></span><span class="ftxt"><h3>Capacitações</h3><p>Um manejo da prática trabalhado em mais de um encontro.</p><span class="fmeta"><b>12h</b> de certificado · 2 ou 3 encontros</span></span><span class="fver">Ver os eventos<i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></span></a>
+      <a class="fcard" href="/formatos/grupos-de-estudos/"><span class="fic"><img src="/assets/ic-intersec.233a3a11.svg" alt=""></span><span class="ftxt"><h3>Grupos de estudos</h3><p>Textos e conceitos estudados em sequência, com tempo para debate.</p><span class="fmeta"><b>15h</b> de certificado · 4 encontros de 1h30</span></span><span class="fver">Ver os eventos<i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></span></a>
+      <a class="fcard" href="/formatos/cursos/"><span class="fic"><img src="/assets/ic-fenda.23793c1a.svg" alt=""></span><span class="ftxt"><h3>Cursos</h3><p>O formato mais longo, para percorrer um campo com mais calma.</p><span class="fmeta"><b>20h</b> de certificado · 4 encontros de 2h30</span></span><span class="fver">Ver os eventos<i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></span></a>
+    </div>
+  </div>
+</section>
+
+<section class="sec formacoes" id="eventos">
+  <div class="wrap">
+    <div class="cab"><h2>Eventos de 2026</h2><p>O que aconteceu ao vivo no ano de 2026, em ordem de data.</p></div>
+    <div class="chips" role="group" aria-label="Filtrar por formato"><button type="button" class="chip on" data-f="" aria-pressed="true">Todos</button><button type="button" class="chip" data-f="clubes-do-livro" aria-pressed="false">Clubes do livro</button><button type="button" class="chip" data-f="minicursos" aria-pressed="false">Minicursos</button><button type="button" class="chip" data-f="capacitacoes" aria-pressed="false">Capacitações</button><button type="button" class="chip" data-f="grupos-de-estudos" aria-pressed="false">Grupos de estudos</button><button type="button" class="chip" data-f="cursos" aria-pressed="false">Cursos</button></div>
+    <ul class="cards" id="lista-eventos"><li data-formato="minicursos"><a href="/eventos/conversas-interseccionais/"><span class="simb"><img src="/assets/c-conversas.24cf333f.webp" alt="" loading="lazy" decoding="async" width="480" height="480"></span><div class="info"><small>minicurso · abr de 2026 · encerrado</small><h3><b>Conversas Interseccionais</b>: saúde, cultura e cuidado</h3><p class="com">Com os quatro fundadores</p><p class="desc">A interseccionalidade como ferramenta de investigação no cuidado: o conceito, sua história e a lente aplicada na clínica, no hospital e na atenção primária.</p><span class="ver">Ver como foi <span aria-hidden="true">→</span></span></div></a></li><li data-formato="cursos"><a href="/eventos/red-pill/"><span class="simb"><img src="/assets/c-redpill.495d1d37.webp" alt="" loading="lazy" decoding="async" width="480" height="480"></span><div class="info"><small>curso · mai de 2026 · encerrado</small><h3><b>Red Pill, patriarcado e masculinidades</b>: impactos na saúde</h3><p class="com">Com os quatro fundadores</p><p class="desc">As raízes do patriarcado, as masculinidades de hoje e o ressentimento masculino como violência que chega aos serviços de saúde.</p><span class="ver">Ver como foi <span aria-hidden="true">→</span></span></div></a></li><li data-formato="capacitacoes"><a href="/eventos/do-armario-a-liberdade/"><span class="simb"><img src="/assets/c-armario.536ea7d9.webp" alt="" loading="lazy" decoding="async" width="480" height="480"></span><div class="info"><small>capacitação · jun de 2026 · encerrado</small><h3><b>Do Armário à Liberdade</b>: a esquiva experiencial e a homofobia internalizada</h3><p class="com">Com Lucas Ávila</p><p class="desc">A ACT e o modelo de estresse de minorias, a partir de "Velvet Rage": homofobia internalizada e terapia afirmativa.</p><span class="ver">Ver como foi <span aria-hidden="true">→</span></span></div></a></li><li data-formato="minicursos"><a href="/eventos/corpos-vinculos-e-violencias/"><span class="simb"><img src="/assets/c-vinculos.fc6741f1.webp" alt="" loading="lazy" decoding="async" width="480" height="480"></span><div class="info"><small>minicurso · jul de 2026 · encerrado</small><h3><b>Corpos, Vínculos e Violências</b>: relações amorosas e abusivas LGBTQIAPN+</h3><p class="com">Com Francisco Ilo e Rodrigo Bandeira</p><p class="desc">Da história do amor romântico à violência por parceiro íntimo entre pessoas LGBTQIAPN+ e às violências sutis no atendimento.</p><span class="ver">Ver como foi <span aria-hidden="true">→</span></span></div></a></li><li data-formato="clubes-do-livro"><a href="/eventos/pacto-da-branquitude/"><span class="simb"><img src="/assets/c-pacto.d079749c.webp" alt="" loading="lazy" decoding="async" width="480" height="480"></span><div class="info"><small>clube do livro · jul de 2026 · encerrado</small><h3><b>O Pacto da Branquitude</b></h3><p class="com">Com os quatro fundadores</p><p class="desc">O lugar de quem aprendeu a se ver sem raça e a chamar de mérito vantagens herdadas.</p><span class="ver">Ver como foi <span aria-hidden="true">→</span></span></div></a></li><li data-formato="capacitacoes"><a href="/eventos/corpos-vulnerados/"><span class="simb"><img src="/assets/c-vulnerados.7bc3d54d.webp" alt="" loading="lazy" decoding="async" width="480" height="480"></span><div class="info"><small>capacitação · ago de 2026 · encerrado</small><h3><b>Corpos Vulnerados</b>: o manejo da violência contra a mulher na saúde</h3><p class="com">Com Samily Gomes Filgueira</p><p class="desc">As estruturas da violência, as linhas de cuidado e a escuta não revitimizadora no serviço de saúde.</p><span class="ver">Ver como foi <span aria-hidden="true">→</span></span></div></a></li><li data-formato="cursos"><a href="/eventos/canetas-emagrecedoras/"><span class="simb"><img src="/assets/c-canetas.bac59e8a.webp" alt="" loading="lazy" decoding="async" width="480" height="480"></span><div class="info"><small>curso · ago de 2026 · encerrado</small><h3><b>Canetas emagrecedoras, autoimagem e gordofobia</b>: desafios na saúde</h3><p class="com">Com Sara Soares e Bianca Salgado</p><p class="desc">Os usos sociais e mercadológicos das tecnologias de emagrecimento, o imperativo da magreza e a gordofobia estrutural no cuidado.</p><span class="ver">Ver como foi <span aria-hidden="true">→</span></span></div></a></li><li data-formato="grupos-de-estudos"><a href="/eventos/gestao-do-sofrimento/"><span class="simb"><img src="/assets/c-gestao.fce587f2.webp" alt="" loading="lazy" decoding="async" width="480" height="480"></span><div class="info"><small>grupo de estudos · set de 2026 · encerrado</small><h3><b>A Gestão do Sofrimento</b>: neoliberalismo, cultura e despatologização</h3><p class="com">Com os quatro fundadores</p><p class="desc">Como conflitos sociais acabam convertidos em déficits individuais e queixas medicalizáveis, e como sustentar uma escuta que articule clínica e crítica social.</p><span class="ver">Ver como foi <span aria-hidden="true">→</span></span></div></a></li><li data-formato="minicursos"><a href="/eventos/cuidado-nas-encruzilhadas/"><span class="simb"><img src="/assets/c-encruzilhadas.ff2fefa6.webp" alt="" loading="lazy" decoding="async" width="480" height="480"></span><div class="info"><small>minicurso · set de 2026 · encerrado</small><h3><b>Cuidado nas Encruzilhadas</b>: intersecções na saúde das mulheres negras</h3><p class="com">Com Gabriel da Silva</p><p class="desc">Racismo institucional no SUS, mitos sobre a dor, sofrimento ético-político e as práticas de cuidado da Clínica Ampliada.</p><span class="ver">Ver como foi <span aria-hidden="true">→</span></span></div></a></li><li data-formato="cursos"><a href="/eventos/fendas-no-cuidado/"><span class="simb"><img src="/assets/c-fendasnocuidado.b236fb68.webp" alt="" loading="lazy" decoding="async" width="480" height="480"></span><div class="info"><small>curso · out de 2026 · <span class="fase" data-ate="2026-11-18"><b>inscrições abertas</b></span><span class="fase" data-de="2026-11-18" hidden>encerrado</span></small><h3><b>Fendas no Cuidado</b>: introdução ao pensamento interseccional na saúde</h3><p class="com">Com os quatro fundadores</p><p class="desc">Gênero, sexualidade, raça, classe, território, espiritualidade e capacidade no processo saúde-doença-cuidado.</p><span class="ver"><span class="fase" data-ate="2026-11-18">Quero me inscrever</span><span class="fase" data-de="2026-11-18" hidden>Ver como foi</span> <span aria-hidden="true">→</span></span></div></a></li></ul>
+    <aside class="chamada so-campanha">
+      <div><p class="eyebrow">gravações com 25% de desconto · até 11/12</p><h3>Perdeu algum desses eventos?</h3><p>Parte deles está no Final de ano no Fendas, em combos de aulas gravadas.</p></div>
+      <a class="btn btn-creme" href="/final-de-ano/">Conhecer os combos</a>
+    </aside>
+  </div>
+</section>
+
+<section class="sec" id="quem-somos" style="background:#F2EAD6">
+  <div class="wrap">
+    <div class="cab"><h2>Quem somos</h2><p>Quatro cofundadores com vínculo com o Ceará e experiências em diferentes contextos de cuidado.</p></div>
+    <div class="qs-foto" role="img" aria-label="Rodrigo Bandeira, Francisco Ilo, Milena Raposo e Gabriel da Silva, fundadores do Instituto Fendas"></div>
+    <div class="pessoas">
+      <div class="pessoa"><div class="foto"><img src="/assets/p-rodrigo.7a8202c4.webp" alt="Rodrigo Bandeira" loading="lazy" decoding="async" width="640" height="800"></div><div class="txt"><h3>Rodrigo Bandeira</h3><p>Psicólogo (UFC). Mestrando em Saúde Coletiva (UECE). Residência em Cancerologia (ICC). Especialista em Sexologia e em Gênero e Sexualidade. Gestalt-terapeuta individual e de relacionamentos.</p><small>CRP 11/17651</small></div></div>
+      <div class="pessoa"><div class="foto"><img src="/assets/p-ilo.80ee52e9.webp" alt="Francisco Ilo" loading="lazy" decoding="async" width="640" height="800"></div><div class="txt"><h3>Francisco Ilo</h3><p>Psicólogo (UFC). Especialista em Terapia de Aceitação e Compromisso (FGE-SP). Psicoterapia individual e de relacionamentos, com formação em Terapia Sexual.</p><small>CRP 11/17085</small></div></div>
+      <div class="pessoa"><div class="foto"><img src="/assets/p-milena.f37c908c.webp" alt="Milena Raposo" loading="lazy" decoding="async" width="640" height="800"></div><div class="txt"><h3>Milena Raposo</h3><p>Psicóloga (UFC). Mestranda em Saúde Pública (UFC). Residência em Neonatologia (ESP-CE). Especialista em Psicologia Hospitalar. Terapeuta Comportamental Contextual.</p><small>CRP 11/19635</small></div></div>
+      <div class="pessoa"><div class="foto"><img src="/assets/p-gabriel.032a7215.webp" alt="Gabriel da Silva" loading="lazy" decoding="async" width="640" height="800"></div><div class="txt"><h3>Gabriel da Silva</h3><p>Psicólogo (UFC). Especialista em Equidade na Gestão do Trabalho e da Educação no SUS (HAOC). Residência em Cancerologia (ESP-CE). Terapeuta Comportamental Contextual.</p><small>CRP 11/18611</small></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec contato" id="contato">
+  <img class="explosao" src="/assets/ic-explosaao.15ca9ba3.svg" alt="" aria-hidden="true">
+  <div class="wrap">
+    <h2>Fala com a gente</h2>
+    <p>Dúvida sobre um evento, sobre qual formato faz sentido para você, ou sobre o que vem por aí.</p>
+    <a class="btn btn-creme btn-zap-cheio" href="https://instagram.com/institutofendas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>Chamar no Instagram</a>
+    <div class="canais">
+      <span>Instagram: <a href="https://instagram.com/institutofendas">@institutofendas</a></span>
+      <span>E-mail: <a href="mailto:institutofendas@gmail.com">institutofendas@gmail.com</a></span>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <img src="/assets/wm-branco-verm.9414302b.svg" alt="Instituto Fendas" width="1830" height="331">
+    <span>© <span class="ano">2026</span> Instituto Fendas · CNPJ 65.465.820/0001-02 · Fortaleza, CE</span>
+  </div>
+</footer>
+
+<nav class="setas" aria-label="Navegar pela página">
+  <a href="#inicio" aria-label="Voltar ao início"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15l6-6 6 6"/></svg></a>
+  <a href="#contato" aria-label="Ir para o fim"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
+</nav>
+<script>
+(function(){var b=document.querySelector('.setas');if(!b)return;function u(){b.classList.toggle('on',window.scrollY>window.innerHeight*0.8)}window.addEventListener('scroll',u,{passive:true});u();})();
+(function(){var car=document.getElementById('depos');if(!car)return;var pts=document.querySelectorAll('.pontos i');function passo(){var f=car.querySelector('figure');return f?f.getBoundingClientRect().width+14:300}document.querySelectorAll('.setas-car button').forEach(function(bt){bt.addEventListener('click',function(){car.scrollBy({left:passo()*+bt.dataset.dir,behavior:'smooth'})})});function marca(){var i=Math.round(car.scrollLeft/passo());pts.forEach(function(p,k){p.classList.toggle('on',k===i)})}car.addEventListener('scroll',marca,{passive:true});marca()})();
+(function(){var cs=document.querySelectorAll('.chip'),ls=document.querySelectorAll('#lista-eventos>li');cs.forEach(function(c){c.addEventListener('click',function(){cs.forEach(function(x){var on=x===c;x.classList.toggle('on',on);x.setAttribute('aria-pressed',on)});ls.forEach(function(l){l.hidden=!!c.dataset.f&&l.dataset.formato!==c.dataset.f})})})})();
+</script>
+<script>
+(function(){var hoje=new Date();hoje.setHours(0,0,0,0);var b=document.querySelector('.abertos');if(!b)return;
+function d(s){var p=s.split('-');return new Date(+p[0],p[1]-1,+p[2])}
+b.querySelectorAll('.ab').forEach(function(a){if(d(a.dataset.fim)<=hoje){a.remove();return}a.hidden=!!(a.dataset.de&&d(a.dataset.de)>hoje)});
+var v=[].slice.call(b.querySelectorAll('.ab:not([hidden])')).sort(function(x,y){return x.dataset.ordem<y.dataset.ordem?-1:1}),n=v.length;
+if(!n){var s=b.closest('section');if(s)s.remove();document.querySelectorAll('.mbtn.aberto-agora,a[href="#aberto"],a[href="/#aberto"]').forEach(function(x){x.remove()});return}
+var r=b.querySelector('.resto');b.className='abertos n'+Math.min(n,3);
+if(n>=3&&!r){r=document.createElement('div');r.className='resto'}
+v.forEach(function(x,k){x.classList.remove('grande','medio','compacto');x.classList.add(n==1?'grande':n==2?'medio':k==0?'grande':'compacto');(n>=3&&k>0?r:b).appendChild(x)});
+if(r){if(n>=3)b.appendChild(r);else r.remove()}})();
+</script>
+<script>
+(function(){try{if(Date.now()>=Date.parse('2026-12-12T00:00:00-03:00')){document.querySelectorAll('.so-campanha').forEach(function(e){e.remove()});document.querySelectorAll('.pos-campanha').forEach(function(e){e.hidden=false})}}catch(e){}})();
+(function(){
+  var b=document.querySelector('.burger'),p=document.getElementById('menu-painel');
+  function fecha(){if(!p)return;p.hidden=true;b.setAttribute('aria-expanded','false');document.body.classList.remove('menu-aberto')}
+  if(b&&p){
+    b.addEventListener('click',function(){var abre=p.hidden;p.hidden=!abre;b.setAttribute('aria-expanded',abre?'true':'false');document.body.classList.toggle('menu-aberto',abre)});
+    p.querySelectorAll('a').forEach(function(a){a.addEventListener('click',fecha)});
+  }
+  document.querySelectorAll('.sub-btn').forEach(function(s){s.addEventListener('click',function(){var u=document.getElementById(s.getAttribute('aria-controls'));var abre=u.hidden;u.hidden=!abre;s.setAttribute('aria-expanded',abre?'true':'false')})});
+  var d=document.querySelector('.nav-desk details');
+  if(d){document.addEventListener('click',function(e){if(d.open&&!d.contains(e.target))d.open=false});d.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){d.open=false})})}
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){fecha();if(d)d.open=false}});
+})();
+</script>
+<script>(function(){var h=new Date();function d(s){var p=s.split('-');return new Date(+p[0],p[1]-1,+p[2])}document.querySelectorAll('.fase').forEach(function(e){var de=e.dataset.de,ate=e.dataset.ate;if(ate&&d(ate)<=h){e.remove();return}if(!de||d(de)<=h)e.hidden=false})})();</script>
+<script>(function(){var a=Math.max(2026,new Date().getFullYear());document.querySelectorAll('.ano').forEach(function(e){e.textContent=a})})();</script>
+<script>
+(function(){try{var q=new URLSearchParams(location.search),k=['utm_source','utm_medium','utm_campaign','utm_content','utm_term','src','sck'],p={};
+k.forEach(function(x){if(q.get(x))p[x]=q.get(x)});try{if(Object.keys(p).length)sessionStorage.setItem('fendas_utm',JSON.stringify(p));else p=JSON.parse(sessionStorage.getItem('fendas_utm')||'{}')}catch(e){}
+if(!Object.keys(p).length)return;document.querySelectorAll('a[href*="pay.hotmart.com"],a[href*="sympla.com.br"]').forEach(function(a){var u=new URL(a.href);Object.keys(p).forEach(function(x){if(!u.searchParams.has(x))u.searchParams.set(x,p[x])});a.href=u.toString()})}catch(e){}})();
+</script>
+</body>
+</html>
