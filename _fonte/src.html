@@ -242,6 +242,45 @@ body.com-barra .setas{bottom:calc(86px + env(safe-area-inset-bottom))}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn,.barra,summary::after{transition:none}}
 .aviso-fim{background:var(--escuro);color:var(--creme);text-align:center;padding:12px 16px;font-size:14.5px;line-height:1.45}
 .btn.fechado{background:var(--linha)!important;color:var(--verde)!important;border-color:var(--linha)!important;cursor:default}
+
+/* topo escolhido pela equipe em 14/11/2026: grade modernista com o nome da campanha */
+.hero{position:relative;isolation:isolate}
+.hero .hero-txt{position:relative;z-index:2}
+.hero .fatos{position:relative;z-index:3}
+.hero em{font-style:normal;color:var(--vermelho)}
+/* modernista: o nome da campanha dentro da grade */
+.v-modernista{background:var(--papel);color:var(--escuro)}
+.v-modernista h1{color:var(--escuro)}
+@media(min-width:900px){.v-modernista h1{font-size:clamp(40px,4.6vw,66px);max-width:13ch}}
+.v-modernista .hero-lead{color:var(--texto)}
+.grade{container-type:inline-size;display:grid;grid-template-columns:repeat(3,1fr);width:100%;max-width:520px}
+.grade span{position:relative;overflow:hidden;aspect-ratio:1;display:grid;place-items:center}
+.grade img{width:58%;position:relative;z-index:1}
+.grade .t{place-items:end start;padding:2.4cqw 2.6cqw}
+.grade .t b{font:700 8.8cqw/.92 'Syne',sans-serif;letter-spacing:-.035em;white-space:nowrap}
+.grade .t-final{background:var(--creme);color:var(--vinho);box-shadow:inset 0 0 0 1px rgba(117,10,33,.12)}
+.grade .t-deano{background:var(--vermelho);color:var(--creme)}
+.grade .t-no{background:var(--verde);color:var(--creme)}
+.grade .t-no:before{content:"";position:absolute;right:-30%;top:-30%;width:90%;aspect-ratio:1;border-radius:50%;background:var(--bege);opacity:.55}
+.grade .t-fendas{background:var(--vinho);color:var(--creme)}
+.grade .t-fendas i{display:inline-block;width:.62em;height:.1em;background:var(--vermelho);vertical-align:.26em;margin-left:.06em;border-radius:1px}
+.grade .s-explosao{background:var(--escuro)}
+.grade .s-quarto{background:var(--bege)}
+.grade .s-quarto:after{content:"";position:absolute;inset:0;background:var(--vinho);border-radius:0 0 100% 0}
+.grade .s-olho{background:var(--papel)}
+.grade .s-olho:before{content:"";position:absolute;inset:6%;border-radius:50%;background:var(--creme);box-shadow:inset 0 0 0 1px rgba(117,10,33,.1)}
+.grade .s-circulo{background:var(--vinho)}
+.grade .s-circulo:after{content:"";position:absolute;width:64%;aspect-ratio:1;border-radius:50%;background:var(--vermelho)}
+.grade .s-meia{background:var(--bege)}
+.grade .s-meia:after{content:"";position:absolute;left:0;right:0;bottom:0;height:50%;background:var(--verde);border-radius:100% 100% 0 0/200% 200% 0 0}
+/* celular e tablet: 2 linhas, só o nome, a explosão e o olho */
+@media(max-width:899px){
+ .grade{max-width:none}
+ .grade .s-quarto,.grade .s-circulo,.grade .s-meia{display:none}
+ .grade .t-final{order:1}.grade .s-explosao{order:2}.grade .t-deano{order:3}.grade .t-no{order:4}.grade .s-olho{order:5}.grade .t-fendas{order:6}}
+@media(min-width:600px) and (max-width:899px){.grade{max-width:560px}}
+@media(min-width:900px){.v-modernista>.wrap{grid-template-columns:1.05fr 1fr;align-items:center;gap:64px}.v-modernista .hero-txt{order:2}.grade{order:1;max-width:none}}
+
 </style>
 </head>
 <body>
@@ -250,11 +289,21 @@ body.com-barra .setas{bottom:calc(86px + env(safe-area-inset-bottom))}
 
 <!--VER:{"nome": "Final de ano no Fendas", "categoria": "Campanha"}-->
 <main id="inicio">
-<section class="hero rachado">
+<section class="hero v-modernista">
   <div class="wrap">
+    <div class="grade" role="img" aria-label="Final de ano no Fendas">
+      <span class="t t-final"><b>final</b></span>
+      <span class="s s-explosao"><img src="{{of/ic-explosaao.svg}}" alt=""></span>
+      <span class="t t-deano"><b>de<br>ano</b></span>
+      <span class="s s-quarto"></span>
+      <span class="s s-olho"><img src="{{of/ic-olho.svg}}" alt=""></span>
+      <span class="s s-circulo"></span>
+      <span class="t t-no"><b>no</b></span>
+      <span class="s s-meia"></span>
+      <span class="t t-fendas"><b>fen<i></i><br>das</b></span>
+    </div>
     <div class="hero-txt">
-      <p class="eyebrow">final de ano no<br>fendas</p>
-      <h1>Os eventos de 2026, juntos por tema e com desconto.</h1>
+      <h1>Os eventos de 2026, juntos por tema e <em>com desconto.</em></h1>
       <p class="hero-lead">As gravações dos eventos que realizamos ao vivo, em combos sobre relações raciais, gênero, sexualidade, interseccionalidade e política, com 25% de desconto sobre o valor ao vivo.</p>
       <div><a class="btn btn-vermelho" href="#combos">Conhecer os combos</a></div>
     </div>
