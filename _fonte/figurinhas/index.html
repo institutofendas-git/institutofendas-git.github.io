@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#750A21">
+<title>Criador de figurinhas · Instituto Fendas</title>
+<link rel="icon" href="explosao.svg" type="image/svg+xml">
+<link rel="stylesheet" href="fontes.css">
+<style>
+:root{--vermelho:#D62929;--vinho:#750A21;--verde:#6B6555;--bege:#C2B299;--creme:#F9F2DE;--papel:#FDF9EF;--escuro:#271416;--texto:#3B2A26;--linha:#E6DAC2;--pad:20px}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--creme);color:var(--texto);font:400 16px/1.5 'Syne',system-ui,sans-serif}
+header{background:var(--vinho);padding:14px var(--pad)}
+header .in{max-width:720px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
+header img{height:26px;width:auto;display:block}
+header span{color:#F2E4CB;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+main{max-width:720px;margin:0 auto;padding:28px var(--pad) 60px}
+h1{font:700 clamp(30px,7vw,46px)/1.05 'Syne',sans-serif;color:var(--escuro);margin:0 0 10px;letter-spacing:-.02em}
+h1 em{font-style:normal;color:var(--vermelho)}
+.lead{margin:0 0 24px;font-size:17px}
+.card{background:var(--papel);border-radius:14px;padding:20px;box-shadow:0 1px 0 var(--linha),0 10px 30px rgba(39,20,22,.06);margin-bottom:18px}
+label.rot{display:block;font-weight:700;color:var(--escuro);margin-bottom:8px}
+.linha{display:flex;gap:10px}
+input[type=url]{flex:1;min-width:0;font:inherit;font-size:16px;padding:14px 14px;border:1.5px solid var(--linha);border-radius:10px;background:#fff;color:var(--escuro)}
+input[type=url]:focus{outline:none;border-color:var(--vinho);box-shadow:0 0 0 3px rgba(117,10,33,.12)}
+.btn{appearance:none;border:0;border-radius:999px;font:700 16px/1 'Syne',sans-serif;padding:14px 20px;cursor:pointer;background:var(--vermelho);color:#fff;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.btn:disabled{opacity:.5;cursor:default}
+.btn.sec{background:transparent;color:var(--vinho);box-shadow:inset 0 0 0 1.5px var(--vinho)}
+.btn.esc{background:var(--escuro)}
+.ou{display:flex;align-items:center;gap:12px;margin:16px 0 12px;color:var(--verde);font-size:13px;text-transform:uppercase;letter-spacing:.1em}
+.ou:before,.ou:after{content:"";flex:1;height:1px;background:var(--linha)}
+.arquivo{display:block;text-align:center;border:1.5px dashed var(--bege);border-radius:10px;padding:14px;cursor:pointer;color:var(--vinho);font-weight:700}
+.arquivo input{display:none}
+.msg{margin:12px 0 0;font-size:15px}
+.msg.erro{color:#B81E1E}
+.escolha{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.escolha button{all:unset;cursor:pointer;width:96px;aspect-ratio:1;border-radius:8px;background:#000 center/cover;box-shadow:0 0 0 2px transparent}
+.escolha button[aria-pressed=true]{box-shadow:0 0 0 3px var(--vermelho)}
+.prev{position:relative;background:#000;border-radius:10px;overflow:hidden}
+.prev video{display:block;width:100%;max-height:60vh;object-fit:contain}
+.trecho{margin-top:14px}
+.trecho .info{display:flex;justify-content:space-between;font-size:14px;margin-bottom:6px}
+input[type=range]{width:100%;accent-color:var(--vermelho)}
+.aviso{background:#FBE7E2;color:var(--vinho);border-radius:8px;padding:10px 12px;font-size:14px;margin:12px 0 0}
+.opcoes{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.opcoes label{font-size:14px;font-weight:700;color:var(--escuro)}
+.opcoes select{width:100%;margin-top:4px;font:inherit;font-size:16px;padding:10px;border-radius:8px;border:1.5px solid var(--linha);background:#fff;color:var(--escuro)}
+.acoes{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.barra{height:8px;background:var(--linha);border-radius:99px;overflow:hidden;margin-top:14px}
+.barra i{display:block;height:100%;width:0;background:var(--vermelho);transition:width .15s}
+.resultado{text-align:center}
+.resultado .gif{display:inline-block;max-width:100%;background:repeating-conic-gradient(#eee 0 25%,#fff 0 50%) 0 0/16px 16px;border-radius:10px;padding:8px}
+.resultado img{display:block;max-width:100%;height:auto;-webkit-touch-callout:default;user-select:auto}
+.peso{font-size:13px;color:var(--verde);margin-top:8px}
+.passos{text-align:left;margin:16px 0 0;padding:14px 16px 14px 34px;background:var(--creme);border-radius:10px;font-size:15px}
+.passos li{margin:4px 0}
+.passos b{color:var(--vinho)}
+[hidden]{display:none!important}
+footer{text-align:center;font-size:13px;color:var(--verde);padding:0 var(--pad) 30px}
+@media(min-width:700px){.opcoes{grid-template-columns:1fr 1fr 1fr}}
+</style>
+</head>
+<body>
+<header><div class="in"><img src="logo.svg" alt="Instituto Fendas"><span>figurinhas</span></div></header>
+<main>
+  <h1>Criador de <em>figurinhas</em></h1>
+  <p class="lead">Cole o link de um post do X (Twitter) com vídeo ou GIF. A gente transforma em GIF de até 6 segundos, pronto para virar figurinha no WhatsApp.</p>
+
+  <section class="card" id="entrada">
+    <label class="rot" for="link">Link do post</label>
+    <form class="linha" id="form">
+      <input type="url" id="link" inputmode="url" autocomplete="off" placeholder="https://x.com/usuario/status/…" required>
+      <button class="btn" id="buscar" type="submit">Buscar</button>
+    </form>
+    <div class="ou">ou</div>
+    <label class="arquivo">Enviar um vídeo do celular<input type="file" id="arquivo" accept="video/*"></label>
+    <p class="msg" id="msg" role="status"></p>
+    <div class="escolha" id="escolha" hidden></div>
+  </section>
+
+  <section class="card" id="editor" hidden>
+    <div class="prev"><video id="video" muted playsinline loop></video></div>
+    <div class="trecho" id="trecho">
+      <div class="info"><span id="trecho-txt"></span><span id="dur-txt"></span></div>
+      <input type="range" id="inicio" min="0" max="0" step="0.1" value="0" aria-label="Começo do trecho">
+    </div>
+    <p class="aviso" id="aviso-corte" hidden>O vídeo tem mais de 6 segundos. A figurinha fica só com o trecho de 6 segundos escolhido acima, porque com mais que isso o WhatsApp manda como vídeo.</p>
+    <div class="opcoes">
+      <label>Tamanho<select id="tamanho"><option value="320">Pequeno (leve)</option><option value="400" selected>Médio</option><option value="512">Grande</option></select></label>
+      <label>Movimento<select id="fps"><option value="8">Econômico</option><option value="12" selected>Normal</option><option value="15">Suave</option></select></label>
+    </div>
+    <div class="acoes"><button class="btn" id="gerar" type="button">Criar figurinha</button></div>
+    <div class="barra" id="barra" hidden><i></i></div>
+  </section>
+
+  <section class="card resultado" id="resultado" hidden>
+    <div class="gif"><img id="gif" alt="Figurinha pronta"></div>
+    <p class="peso" id="peso"></p>
+    <ol class="passos">
+      <li><b>No iPhone:</b> toque e segure na figurinha acima e escolha <b>Copiar</b>.</li>
+      <li>No WhatsApp, abra a conversa, toque e segure no campo de mensagem e escolha <b>Colar</b>. Ela vai como figurinha.</li>
+      <li>No Android ou no computador, use <b>Baixar</b> e mande o arquivo.</li>
+    </ol>
+    <div class="acoes" style="justify-content:center">
+      <a class="btn" id="baixar" download="figurinha-fendas.gif">Baixar</a>
+      <button class="btn esc" id="compartilhar" type="button" hidden>Compartilhar</button>
+      <button class="btn sec" id="nova" type="button">Fazer outra</button>
+    </div>
+  </section>
+</main>
+<footer>Instituto Fendas · uso interno. Os vídeos são processados no seu próprio aparelho.</footer>
+<script type="module" src="app.js"></script>
+</body>
+</html>

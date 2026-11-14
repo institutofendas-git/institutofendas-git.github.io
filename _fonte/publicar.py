@@ -22,9 +22,10 @@ for src, out in pares:
     if out.startswith('eventos/'):  # endereço antigo continua funcionando
         sl = out.split('/')[1]; os.makedirs(f'{R}/cursos/{sl}')
         open(f'{R}/cursos/{sl}/index.html', 'w').write(f'<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><title>Instituto Fendas</title><link rel="canonical" href="{U}/eventos/{sl}/"><meta name="robots" content="noindex"><meta http-equiv="refresh" content="0; url=/eventos/{sl}/"><script>location.replace("/eventos/{sl}/"+location.hash)</script></head><body><a href="/eventos/{sl}/">Continuar</a></body></html>')
+shutil.copytree('figurinhas', f'{R}/figurinhas')  # ferramenta interna, fora do sitemap e dos buscadores
 shutil.copy('preview.jpg', f'{R}/final-de-ano/preview.jpg'); shutil.copy('preview-home.jpg', f'{R}/preview.jpg')
 open(f'{R}/CNAME', 'w').write('institutofendas.com.br\n'); open(f'{R}/.nojekyll', 'w').write('')
-open(f'{R}/robots.txt', 'w').write(f'User-agent: *\nAllow: /\nDisallow: /_fonte/\nSitemap: {U}/sitemap.xml\n')
+open(f'{R}/robots.txt', 'w').write(f'User-agent: *\nAllow: /\nDisallow: /_fonte/\nDisallow: /figurinhas/\nSitemap: {U}/sitemap.xml\n')
 open(f'{R}/sitemap.xml', 'w').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + ''.join(f'<url><loc>{U}{u}</loc></url>\n' for u in urls) + '</urlset>\n')
 h404 = ativos.resolver(menu.aplicar(open('404-src.html').read()), '/assets/', R)
 open(f'{R}/404.html', 'w').write(h404)
