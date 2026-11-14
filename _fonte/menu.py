@@ -120,6 +120,9 @@ def aplicar(html):
     if not m:
         return html
     html = html.replace(m.group(0), header(m.group(1)))
+    # links de inscrição e checkout (Sympla, Hotmart) abrem em nova guia
+    html = re.sub(r'<a ((?:(?!>)[^>])*?href="https?://[^"]*(?:sympla\.com\.br|hotmart\.com|hotmart\.host)[^"]*"(?:(?!>)[^>])*)>',
+                  lambda m: m.group(0) if 'target=' in m.group(1) else f'<a {m.group(1)} target="_blank" rel="noopener">', html)
     anim = m.group(1) != 'inicio'
     html = html.replace('</style>', CSS + GERAL_CSS + (ANIM_CSS if anim else '') + '</style>', 1)
     html = html.replace('<style>', HEAD + '<style>', 1)
