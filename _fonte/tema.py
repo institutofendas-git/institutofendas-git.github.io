@@ -133,7 +133,7 @@ def gerar(t):
     ld = json.dumps({"@context": "https://schema.org", "@type": "CollectionPage", "name": t['nome'], "description": t['chamada'],
                      "url": f"https://institutofendas.com.br/temas/{t['slug']}/",
                      "isPartOf": {"@type": "WebSite", "name": "Instituto Fendas", "url": "https://institutofendas.com.br/"},
-                     "hasPart": [{"@type": "EducationEvent", "name": CURSOS[s]['nome'], "url": f"https://institutofendas.com.br/eventos/{s}/"} for s in evs]}, ensure_ascii=False)
+                     "hasPart": [{"@type": "WebPage", "name": CURSOS[s]['nome'], "url": f"https://institutofendas.com.br/eventos/{s}/"} for s in evs]}, ensure_ascii=False)
     base = open('base.css').read()
     page = f"""<!DOCTYPE html>
 <html lang="pt-BR">

@@ -376,6 +376,14 @@ def jsonld(slug, c):
          "image": f"https://institutofendas.com.br/eventos/{slug}/preview.jpg",
          "organizer": {"@type": "Organization", "name": "Instituto Fendas", "url": "https://institutofendas.com.br/"},
          "performer": [{"@type": "Person", "name": BIOS[k][0]} for k in c['facilitadores']]}
+    i = c.get('inscricao')
+    if c.get('status') == 'aberto' and i:  # preço do lote atual, para o Google mostrar
+        hoje = _dt.date.today(); lote = i['lotes'][-1][0]
+        for val, q in i['lotes']:
+            m = re.search(r'até (\d{2})/(\d{2})', q)
+            if not m or _dt.date(int(ano), int(m.group(2)), int(m.group(1))) >= hoje: lote = val; break
+        v = re.search(r'([\d.]+,\d{2})', lote).group(1).replace('.', '').replace(',', '.')
+        d["offers"] = {"@type": "Offer", "url": i['url'], "price": v, "priceCurrency": "BRL", "availability": "https://schema.org/InStock"}
     return '<script type="application/ld+json">' + json.dumps(d, ensure_ascii=False) + '</script>'
 
 
